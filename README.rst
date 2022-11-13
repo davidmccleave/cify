@@ -120,7 +120,7 @@ dependencies first. The steps are outlined below. We'll start by installing pyth
    This same process must be executed if you wish to tamper with the documentation. For this, `cd` into the `docs/` directory, and run
    the command, ``pip install -r docs-requirements.txt``.
 
-You should now have the appropriate environment set up to start working on constributions.
+You should now have the appropriate environment set up to start working on contributions.
 
 .. _Contact:
 
