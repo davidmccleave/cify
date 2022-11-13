@@ -1,0 +1,24 @@
+Installation
+============
+
+.. note::
+    Currently CIFY is not hosted on PyPI and therefore
+    the install command below will not work.
+
+Using pip
+---------
+
+To install CIFY using pip:
+
+.. code-block:: console
+
+    $ pip install cify
+
+From Source
+-----------
+
+Clone this, run that, import using:
+
+.. code-block:: python
+
+    import cify as ci

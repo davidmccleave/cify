@@ -1,0 +1,11 @@
+API Documentation
+=================
+
+The API documentation.
+
+.. toctree::
+   :glob:
+
+   modules/cify.core
+   modules/cify.ec
+   modules/cify.si

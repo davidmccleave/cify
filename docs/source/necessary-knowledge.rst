@@ -1,0 +1,171 @@
+Necessary Knowledge
+===================
+
+There are some basic principles that are worth understanding if you wish to use this framework
+effectively. Contained in this section are the conclusions you will come to should you just
+work by trial and error from the API documentation. This could also be called the basic
+"philosophy" of the framework and you'll avoid some errors and save yourself a lot of time
+just reading over some of these concepts. Feel free to skip to the Jupyter notebook based tutorials
+as well. They're sufficient for most simple use cases.
+
+The following are covered:
+
+    1. Utilities
+
+    2. Agents and Collections
+
+    3. Objective Functions
+
+    4. Algorithms
+
+1. Utilities
+------------
+Before going any further, it is worth mentioning the utility functions scattered throughout the framework.
+For most packages, utility functions are provided in a ``utils`` module. These functions
+are useful for doing quick, common calculations or for returning common objects.
+Here are a few examples::
+
+    import cify as ci
+
+    swarm = ci.get_swarm(n_particles=30, obj_func=obj_func)
+    obj_func = ci.get_objective_function(func_name"rosenbrock", n_dimensions=30)
+    population = ci.get_population(n_individuals=30, obj_func=obj_func)
+
+Have a look in the API documentation for more utility functions.
+
+2. Agents and Collections
+-------------------------
+The majority of the paradigms covered by this framework make use of a collection of
+agents to search for optima. These agents, such as a :class:`~cify.si.pso.particle.Particle`
+in a swarm, or an :class:`~cify.ec.individual.Individual` in a population, share similarities
+in their behaviour. They differ in minor paradigm-specific attributes with some small tweaks for
+the paradigm of which they are a part.
+
+Collections
+~~~~~~~~~~~
+
+Swarms and populations are represented by  the :class:`Collection` class. A :class:`Collection` contains a list
+of agents and accepts other keywords too. All the provided metaheuristics will prioritize operators defined as attributes
+to the collection they are iterating over, over their defaults. Furthermore, they will prioritize operators defined
+as attributes to each :class:`Agent` over anything else. This allows you to give a single agent separate components
+to use or a certain population a different crossover operator to use, for example. The :class:`Collection` class
+has some useful methods as well, such as the ``min`` or ``max`` methods that return the minimum or maximum valued
+agents with respect to their :class:`ObjectiveFunction`. A :class:`Collection` can also return a Pandas DataFrame
+representation of itself and all its agents. The columns of this DataFrame represent attributes of the agents in the
+:class:`Collection`.
+
+Position
+~~~~~~~~
+All agents use :class:`~cify.core.position.Position` objects to store their position in the search space of their :class:`ObjectiveFunction`.
+It should not be necessary for you to instantiate any :class:`~cify.core.position.Position`
+objects, however, you may call their fields when creating your own algorithms or when you wish to
+gain more insight on the agents.
+The :class:`~cify.core.position.Position` object has three primary attributes::
+
+    obj_func
+    vector
+    value
+
+The ``obj_func`` field represents a :class:`ObjectiveFunction` object. This
+:class:`ObjectiveFunction` object is used for evaluation by the :class:`~cify.core.position.Position` and evaluation is done
+intelligently when the ``value`` field is called. This way you don't need to worry about unnecessary
+evaluations and algorithm running times, as well as their use of the computational budget, are minimized.
+
+Accessing the three fields of a :class:`~cify.core.position.Position` object, through a
+:class:`~cify.si.pso.particle.Particle` object, typically looks like this::
+
+    particle = ci.Particle(...)
+
+    obj_func = particle.position.obj_func
+    vector   = particle.position.vector
+    value    = particle.position.value
+
+You could also access the ``vector`` and ``value`` fields directly::
+
+    vector   = particle.vector
+    value    = particle.value
+
+Rarely would ``particle.position.obj_func`` be accessed directly. Typically, the :class:`ObjectiveFunction`.
+would be called directly from where it was instantiated.
+
+3. Objective Functions
+-------------------
+
+There are two objective function classes, :class:`~cify.core.objective_function.ObjectiveFunction`
+and :class:`~cify.core.objective_function.MultiObjectiveFunction`. The latter acts as a wrapper class
+for the former and simply takes a list of :class:`~cify.core.objective_function.ObjectiveFunction`
+objects on initialization. Objective functions represent a problem or set of problems to be optimized
+by a meta-heuristic. Check out tutorial on the :class:`ObjectiveFunction` class for more information on quickly
+importing objective functions using the ``get_objective_function`` utility method, and defining your own custom
+:class:`ObjectiveFunction.`.
+
+There are six primary types of objective functions that encompass the vast majority of optimization problems.
+Some problems may present themselves as combinations of any of these six classes.
+
+    1. **Unconstrained** - A function that does not possess constraints on any of its variables / dimensions.
+    2. **Boundary Constrained** - A function that contains real-valued constraints on one or more of its variables / dimensions.
+    3. **Dynamic** - A function that changes with respect to some variable such as time.
+    4. **Single-objective** - A function that has only one objective to optimize.
+    5. **Multi-objective** - A function containing multiple objectives to optimize, typically in conjunction with each other.
+    6. **Multi-modal** - A function that contains multiple optima in different regions of its search space.
+
+Representing them in CIFY is covered in the tutorial.
+
+4. Algorithms
+--------------
+All algorithms inherit the :class:`~cify.core.ialgorithm.Algorithm` base class. This base class
+acts as an interface and contains implementations of useful functions used by utility functions
+that operate on algorithm objects as well as to provide ease of use for the end user. It is
+standard practice to iterate an algorithm using the
+:meth:`~cify.core.ialgorithm.Algorithm.iterate` base class function. This
+
+The Importance of Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+    To pass parameters to any operator used by a metaheuristic use the corresponding ``<operator-name>_params``
+    argument.
+
+The arguments passed to an algorithm are used to define parameters for inner functions or operators.
+These parameters are always given in a corresponding attribute, ``<operator-type>_params``, where ``<operator-type>``
+is the type of the operator, for example, ``velocity``, ``crossover``, ``selection`` or ``mutation``.
+
+Consider the example below, where the objective function to be optimized and the swarm to optimize it has
+already been defined::
+
+    InertiaWeightPSO(
+        obj_func=example_obj_func,
+        swarms=[example_swarm],
+        topology=ring_topology,
+        topology_params{'n_size': 3},
+        velocity_params={'w': 0.72, 'c1': 1.4, 'c2': 1.4},
+    )
+
+In this example, we are passing the additional argument, ``n_size`` to the algorithm to define the neighbourhood
+size used by the ring topology function. We are also passing the values for the variables, ``w``, ``c1`` and ``c2``
+to be used by the ``velocity_update`` function.
+
+This way of thinking applies across all meta-heuristics provided and their generalised forms, and is strongly encouraged
+when you implement custom algorithms and functions. Any time you want to use custom components, include any extra
+variables as parameters to the function itself.
+
+.. note::
+    When implementing your own custom algorithms, the only necessary function to override is the ``do_iteration``
+    function. This function performs the logic of a single iteration of the algorithm and is used
+    by internal methods in the base class :class:`~cify.core.algorithm.Algorithm`. The basic template is
+    shown below::
+
+        class MyNewMetaHeuristic(ci.Algorithm):
+            def __init__(self, ...):
+                ...
+
+            def do_iteration(self):
+                ...
+                return collections
+
+    Use `__init__` for your algorithm fields and setup.
+
+    .. warning::
+        The `do_iteration` method should return a list of all the :class:`Collection` objects that were used by
+        your metaheuristic during the iteration. This list is used to update the ``statistics`` DataFrame handled by
+        the base class.

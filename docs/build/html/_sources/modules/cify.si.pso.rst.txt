@@ -1,0 +1,39 @@
+Particle Swarm Intelligence
+===========================
+
+.. automodule:: cify.si.pso
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Algorithm
+-----------------------------
+
+.. automodule:: cify.si.pso.algorithm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Particle
+----------------------------
+
+.. automodule:: cify.si.pso.particle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Utilities
+-----------------------------
+
+.. automodule:: cify.si.pso.utilities
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Velocities
+------------------------------
+
+.. automodule:: cify.si.pso.velocity_updates
+   :members:
+   :undoc-members:
+   :show-inheritance:

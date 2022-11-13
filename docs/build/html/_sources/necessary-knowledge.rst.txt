@@ -1,0 +1,162 @@
+Necessary Knowledge
+===================
+
+There are some basic principles that are worth understanding if you wish to use this framework
+effectively. Contained in this section are the conclusions you will come to should you just
+work by trial and error from the API documentation. This could also be called the basic
+"philosophy" of the framework and you'll avoid some errors and save yourself a lot of time
+just reading over some of these concepts.
+
+The following are covered:
+
+    #. Utilities
+
+    #. Agents
+
+    #. Objective Functions
+
+    #. Algorithms
+
+Utilities
+----------
+Before going any further, it is worth mentioning the utility functions scattered throughout the framework.
+For most packages utility functions are provided in a `utilities` module. These `utilities` functions
+are useful for doing quick, common calculations or for returning common objects.
+Here are a few examples::
+
+    from cify.si.pso.utilities import get_swarm
+    from cify.core.utilities import get_objective_function
+    from cify.ec.utilities import get_population
+
+    swarm = get_swarm(n_particles=30, obj_func=obj_func, rng=rng)
+    obj_func = get_objective_function("rosenbrock", n_dimensions=30)
+    population = get_population(n_individuals=30, obj_func=obj_func)
+
+Have a look in the API documentation for more utility functions.
+
+Agents
+----------
+A large majority of the paradigms covered by this framework make use of a collection of
+agents to search for optima. These agents, such as a :class:`~cify.si.pso.particle.Particle`
+in a swarm, or an :class:`~cify.ec.individual.Individual` in a population, share similarities
+in their behaviour. Their only differences are the fields they contain and small tweaks for
+the paradigm of which they are a part. Collections of agents are always python lists.
+
+Position
+~~~~~~~~
+All agents use :class:`~cify.core.position.Position` objects to store position in a search space.
+It should not be necessary for you to instantiate any :class:`~cify.core.position.Position`
+objects, however you will call their fields whenever you create your own algorithms or wish to
+gain more insight about positions of agents in a search space.
+The :class:`~cify.core.position.Position` object has three fields::
+
+    obj_func
+    vector
+    value
+
+The `obj_func` field represents a :class:`~cify.core.objectivefunction.ObjectiveFunction` object. This
+objective function object is used for evaluation by the :class:`~cify.core.position.Position` and evaluation is done
+intelligently when the `value` field is called. This way you don't need to worry about unnecessary
+evaluations and algorithm running times are minimized.
+
+Accessing the three fields of a :class:`~cify.core.position.Position` object, through a
+:class:`~cify.si.pso.particle.Particle` object, typically looks like this::
+
+    particle = Particle(obj_func=example_function)
+
+    obj_func = particle.position.obj_func
+    vector   = particle.position.vector
+    value    = particle.position.value
+
+Although you would rarely use `particle.position.obj_func`, opting instead to directly call your
+objective function.
+
+Objective Functions
+-------------------
+
+There are two objective function classes, :class:`~cify.core.objective_function.ObjectiveFunction`
+and :class:`~cify.core.objective_function.MultiObjectiveFunction`. The latter acts as a wrapper class
+for the former and simply takes a list of :class:`~cify.core.objective_function.ObjectiveFunction`
+objects on initialization. Objective functions represent a problem or set of problems to be optimized
+by a meta-heuristic. Looking at the fields of an :class:`~cify.core.objective_function.ObjectiveFunction`::
+
+            function
+            optimization
+            n_dimensions
+            bounds
+            vector_constraints
+            rng
+
+
+Algorithms
+----------
+All algorithms inherit the :class:`~cify.core.ialgorithm.Algorithm` base class. This base class
+acts as an interface and contains implementations of useful functions used by utility functions
+that operate on algorithm objects as well as to provide ease of use for the end user. It is
+standard practice to iterate an algorithm using the
+:meth:`~cify.core.ialgorithm.Algorithm.iterate` base class function. This
+
+The Importance of Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I find this framework feels best when you approach thinking about algorithms as objects with
+parameters, don't overcomplicate your thinking. The parameters passed to an algorithm are often
+used to define parameters for inner functions. Most of the logic of inner functions access variables
+they would other ask for themselves as parameters, by utilising the `self` parameter. Consider
+the example below, where the objective function to be optimized and the swarm to optimize it has
+already been defined::
+
+    InertiaWeightPSO(
+        obj_func=example_obj_func,
+        swarm=example_swarm,
+        topology=ring_topology,
+        w=0.72
+        c1=1.4,
+        c2=1.4,
+        n_size=3
+    )
+
+In this example, we are passing the additional parameter, `n_size` to the algorithm to define the neighbourhood
+size used by the ring topology function.
+
+You can also do this for your own functions. Say you have a custom velocity function that uses a new constants
+somewhere in it's calculations::
+
+    def my_velocity_function(self, particle: Particle):
+        ...
+        self.a * self.b / self.c
+        ...
+
+Standard practice would be to define these values as parameters to the algorithm::
+
+    PSO(
+        obj_func=example_obj_func,
+        swarm=example_swarm,
+        velocity_update=my_velocity_function
+        c1=1.4,
+        c2=1.4,
+        a=0.84,
+        b=0.32,
+        c=1.05,
+    )
+
+This way of thinking applies across all meta-heuristics provided and their generalised forms, and is strongly encouraged
+when you implement custom algorithms and functions. Each time you want
+to use custom components passed as parameters, include any extra variables as parameters to the algorithm as well.
+
+The Magical `do_iteration` function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When implementing your own custom algorithms, the only necessary function to override is the `do_iteration`
+function. This function performs the logic of performing a single iteration of your algorithm and is used
+by other algorithms in the base class :class:`~cify.core.ialgorithm.Algorithm`. The basic template is
+show below::
+
+    class MyNewMetaHeuristic(Algorithm):
+        def __init__(self, ...):
+            ...
+
+        def do_iteration(self):
+            ...
+            # perform miracles
+            ...
+
+Use `__init__` for your algorithm fields and setup.

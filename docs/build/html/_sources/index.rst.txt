@@ -1,0 +1,68 @@
+.. cify documentation master file, created by
+   sphinx-quickstart on Sat Jul  9 13:02:39 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+CIFY documentation
+=====================
+
+.. note::
+   This project is still under development.
+
+CIFY is a framework for common computational intelligence
+paradigms written in Python. The goal of the framework is to
+provide end users with the ability to easily and reliably
+implement artificial intelligence meta-heuristics. We also
+provide a collection of well-known meta-heuristics.
+
+For more details, check out :doc:`what-is-cify`.
+If you want to learn more about what's under the hood, read through the
+:doc:`necessary-knowledge` page.
+
+Installation
+------------
+::
+
+   pip install cify
+
+Basic Example
+-------------
+::
+
+   import cify as ci
+   from cify.si.pso.algorithm import InertiaWeightPSO
+
+   # Set internal seed
+   set_seed(0)
+
+   # Define objective function.
+   obj_func = ci.get_objective_function('rosenbrock', ci.Optimization.Min)
+
+   # Create swarm and algorithm.
+   swarm = ci.get_swarm(10, obj_func=obj_func)
+   pso = InertiaWeightPSO(obj_func, swarms=[swarm])
+
+   # Perform 100 iterations and return the statistics of the last 5.
+   pso.execute(100)
+   pso.statistics.tail(5)
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   what-is-cify
+   installation
+   tutorials
+   necessary-knowledge
+   api
+   license
+
+Indices
+-------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

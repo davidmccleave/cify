@@ -1,0 +1,23 @@
+Differential Evolution
+======================
+
+.. automodule:: cify.ec.de
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Algorithm
+----------------------------
+
+.. automodule:: cify.ec.de.algorithm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Trial Vectors
+---------------------------------
+
+.. automodule:: cify.ec.de.trial_vectors
+   :members:
+   :undoc-members:
+   :show-inheritance:

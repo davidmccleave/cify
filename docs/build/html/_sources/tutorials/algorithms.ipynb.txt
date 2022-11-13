@@ -1,0 +1,164 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "source": [
+    "# Algorithms\n",
+    "\n",
+    "In this tutorial, we will explore the general philosophy behind algorithms provided in this framework and we will end with a look at implementing your own algorithms from scratch, whilst maintaining compatibility with the framework. CIFY provides algorithms for swarm intelligence and evolutionary computation and all algorithms return statistics in the form of a Pandas DataFrame. We'll start by looking at particle swarm optimization (PSO), but first, we must import cify and set a seed for all stochastic operations."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "CIFY: internal seed successfully set to: '0'\n"
+     ]
+    }
+   ],
+   "source": [
+    "# To install cify via pip:\n",
+    "# ! pip install cify\n",
+    "import cify as ci\n",
+    "\n",
+    "ci.set_seed(0)"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## PSO"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": true,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "               best      worst      mean     stdev  global_optimum  \\\niteration                                                            \n96         7.554855   9.825266  7.989575  0.676901        7.554855   \n97         7.625888  13.513876  8.357135  1.731745        7.554855   \n98         7.536221  10.475417  8.037967  0.874609        7.536221   \n99         7.536332  14.866581  8.407987  2.160243        7.536221   \n100        7.531231   8.956669  7.815265  0.423751        7.531231   \n\n          n_evaluations  \niteration                \n96                  107  \n97                  107  \n98                  101  \n99                  107  \n100                 109  ",
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>best</th>\n      <th>worst</th>\n      <th>mean</th>\n      <th>stdev</th>\n      <th>global_optimum</th>\n      <th>n_evaluations</th>\n    </tr>\n    <tr>\n      <th>iteration</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>96</th>\n      <td>7.554855</td>\n      <td>9.825266</td>\n      <td>7.989575</td>\n      <td>0.676901</td>\n      <td>7.554855</td>\n      <td>107</td>\n    </tr>\n    <tr>\n      <th>97</th>\n      <td>7.625888</td>\n      <td>13.513876</td>\n      <td>8.357135</td>\n      <td>1.731745</td>\n      <td>7.554855</td>\n      <td>107</td>\n    </tr>\n    <tr>\n      <th>98</th>\n      <td>7.536221</td>\n      <td>10.475417</td>\n      <td>8.037967</td>\n      <td>0.874609</td>\n      <td>7.536221</td>\n      <td>101</td>\n    </tr>\n    <tr>\n      <th>99</th>\n      <td>7.536332</td>\n      <td>14.866581</td>\n      <td>8.407987</td>\n      <td>2.160243</td>\n      <td>7.536221</td>\n      <td>107</td>\n    </tr>\n    <tr>\n      <th>100</th>\n      <td>7.531231</td>\n      <td>8.956669</td>\n      <td>7.815265</td>\n      <td>0.423751</td>\n      <td>7.531231</td>\n      <td>109</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from cify.si.pso.algorithm import InertiaWeightPSO\n",
+    "\n",
+    "# Define objective function.\n",
+    "obj_func = ci.get_objective_function('rosenbrock', ci.Optimization.Min, 10)\n",
+    "\n",
+    "# Create swarm and algorithm.\n",
+    "swarm = ci.get_swarm(10, obj_func=obj_func)\n",
+    "pso = InertiaWeightPSO(obj_func, swarms=[swarm])\n",
+    "\n",
+    "# Execute and return the statistics of the last five iterations.\n",
+    "pso.execute(100)\n",
+    "pso.statistics.tail(5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## GA"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# TODO: basic GA example"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## User-Defined Algorithm"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# TODO: override do_iteration"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}

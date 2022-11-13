@@ -1,0 +1,90 @@
+Core
+==================
+
+This page contains the documentation for core components of CIFY. The first three components,
+``Algorithm``, ``Agent`` and ``Collection`` are from the ``base_classes`` package.
+
+.. automodule:: cify.core
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Algorithm
+----------------------------
+
+.. automodule:: cify.core.base_classes.algorithm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Agent
+----------------------------
+
+.. automodule:: cify.core.base_classes.agent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Collection
+----------------------------
+
+.. automodule:: cify.core.base_classes.collection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ObjectiveFunction
+-------------------------
+
+.. automodule:: cify.core.objective_function
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Runner
+-------------------------
+
+.. automodule:: cify.core.runner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Task
+-------------------------
+
+.. automodule:: cify.core.task
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Optimization Types (Enum)
+-------------------------
+
+.. automodule:: cify.core.optimization
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Topologies
+------------------------------
+
+.. automodule:: cify.core.topologies
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Position
+--------------------------
+
+.. automodule:: cify.core.position
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Utilities
+---------------------------
+
+.. automodule:: cify.core.utilities
+   :members:
+   :undoc-members:
+   :show-inheritance:

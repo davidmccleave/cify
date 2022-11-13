@@ -1,0 +1,15 @@
+Generic Evolutionary Algorithm
+=================================
+
+.. automodule:: cify.ec.ea
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Algorithm
+----------------------------
+
+.. automodule:: cify.ec.ea.algorithm
+   :members:
+   :undoc-members:
+   :show-inheritance:

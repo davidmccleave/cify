@@ -1,0 +1,242 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "source": [
+    "# Evolutionary Operators\n",
+    "\n",
+    "There are three evolutionary operators that can be customized per `Algorithm` or `Collection` (generic representation of a population). The three operators are:\n",
+    "\n",
+    "- selection_operator\n",
+    "- crossover_operator\n",
+    "- mutation_operator\n",
+    "\n",
+    "Some variants of these operators take optional parameters, these are always passed in a parameter named `<operator-name>_params`. For the three operators used in evolutionary computation, these parameters would be passed in a dictionary named any of the following:\n",
+    "\n",
+    "- selection_params\n",
+    "- crossover_params\n",
+    "- mutation_params\n",
+    "\n",
+    "In this tutorial, we will look at defining operators for a genetic algorithm and use some CIFY provided custom operators as well as a user defined custom operator. First, we will import CIFY."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": true,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "CIFY: internal seed successfully set to: '0'\n"
+     ]
+    }
+   ],
+   "source": [
+    "# To install cify via pip:\n",
+    "# ! pip install cify\n",
+    "import cify as ci\n",
+    "\n",
+    "ci.set_seed(0)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Next, we will define a genetic algorithm to customize."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "from cify.ec.ga.algorithm import GA\n",
+    "\n",
+    "# Define the objective function to optimize.\n",
+    "obj_func = ci.get_objective_function('exponential')\n",
+    "\n",
+    "# Define the populations we'll use.\n",
+    "populations = ci.get_populations(3, n_individuals=50, obj_func=obj_func)\n",
+    "\n",
+    "# Define the genetic algorithm\n",
+    "ga = GA(obj_func=obj_func, populations=populations)"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## Selection Operators\n",
+    "\n",
+    "Let's first take a look at the default selection operator assigned to the genetic algorithm."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "ga.selection_operator"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "We'll set a custom operator for the second population, so that we can compare the performance of this operator with the defaults which will still be used by the other two populations. Remember to set custom parameters if you do not wish to use the defaults. To find out the default values for any operators, check out the operators page of the API documentation."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "ga.populations[1].selection_operator = ...\n",
+    "ga.populations[1].selection_params = ..."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## Crossover Operators"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2 parents\n"
+     ]
+    }
+   ],
+   "source": [
+    "# TODO: crossover operators\n",
+    "\n",
+    "class Test:\n",
+    "    def __init__(self, name, crossover_params: dict):\n",
+    "        self.name = name\n",
+    "        self.crossover_params = crossover_params\n",
+    "\n",
+    "    def do(self):\n",
+    "        if 'n_parents' in self.crossover_params:\n",
+    "            if self.crossover_params['n_parents'] == 2:\n",
+    "                print('2 parents')\n",
+    "        else:\n",
+    "            print('hmm')\n",
+    "\n",
+    "test = Test(name='testes', crossover_params={'n_parents': 2, 'n_offspring': 2})\n",
+    "test.do()\n"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "## Mutation Operators"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# TODO: mutation operators"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
