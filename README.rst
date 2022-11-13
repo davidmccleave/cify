@@ -15,7 +15,7 @@
 
 |logo|
 
-Documentation_ / Useful_ / Installation_ / Usage_ / Contributing_ / Contact_
+Documentation_ / Installation_ / Usage_ / Contributing_ / Contact_
 
 CIFY: Computational Intelligence Framework for pYthon
 =============================================================================
@@ -30,26 +30,6 @@ The official repository for the Python CI framework, formerly known as CIFY.
 This open-source framework provides easy access to static methods and classes that
 simplify the process of nature-inspired optimization in Python. For more information,
 consult the Documentation_.
-
-.. _Useful:
-
-Useful Information
-********************************************************************************
-
-`docs/` contains the Sphinx website files.
-
-`cify/` contains the CIFY source code.
-
-To generate an interactive coverage report, first cd into the root directory, then run the commands
-below:
-
-.. code-block:: bash
-
-    coverage run -m pytest
-    coverage html --omit="*/test*" --precision=2 && open htmlcov/index.html
-
-These commands will run pytest to generate the coverage report, then convert the generated SQL database into
-HTML and open the web page in your default browser.
 
 .. _Installation:
 
@@ -121,6 +101,24 @@ dependencies first. The steps are outlined below. We'll start by installing pyth
    the command, ``pip install -r docs-requirements.txt``.
 
 You should now have the appropriate environment set up to start working on contributions.
+
+Useful Information
+~~~~~~~~~~~~~~~~~~
+
+`docs/` contains the Sphinx website files.
+
+`cify/` contains the CIFY source code.
+
+To generate an interactive coverage report, first cd into the root directory, then run the commands
+below:
+
+.. code-block:: bash
+
+    coverage run -m pytest
+    coverage html --omit="*/test*" --precision=2 && open htmlcov/index.html
+
+These commands will run pytest to generate the coverage report, then convert the generated SQL database into
+HTML and open the web page in your default browser.
 
 .. _Contact:
 
