@@ -1,0 +1,960 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Evolutionary Operators" href="evolutionary-operators.html" /><link rel="prev" title="Algorithms" href="algorithms.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Objective Functions - CIFY 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">CIFY 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">CIFY 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../what-is-cify.html">What is CIFY?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../necessary-knowledge.html">Necessary Knowledge</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../tutorials.html">Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basics.html">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Objective Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api.html">API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/cify.core.html">Core</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/cify.ec.html">Evolutionary Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.de.html">Differential Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.ea.html">Evolutionary Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.ga.html">Genetic Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.operators.html">Evolutionary Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/cify.si.html">Swarm Intelligence</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.si.pso.html">Particle Swarm Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Objective-Functions">
+<h1>Objective Functions<a class="headerlink" href="#Objective-Functions" title="Permalink to this headline">#</a></h1>
+<p>This Jupyter notebook shows how we can use CIFY to get pre-defined common benchmark objective functions or define different types of custom <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>s. <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>s can be static or dynamic and can have only a single objective or contain multiple objectives. They can also have constraints on their boundaries or on vectors in the search space that can be static or dynamic. An objective function can contain one or more of these characteristics and CIFY makes it easy to
+add or remove characteristics. First we must import cify. We will also set a seed for the global random number generator that will be used by objects that use stochastic operations. This step is not necessary if you do not care for repeatability, however it is recommended, especially if you wish to use CIFY for research work. Once the seed is set, you can forget about it.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install cify via pip:</span>
+<span class="c1"># ! pip install cify</span>
+<span class="kn">import</span> <span class="nn">cify</span> <span class="k">as</span> <span class="nn">ci</span>
+
+<span class="n">ci</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CIFY: internal seed successfully set to: '0'
+</pre></div></div>
+</div>
+<p>Once we have cify imported, we can begin to define an objective function that we wish to optimize. Generally, the flow of optimizing an objective function using CIFY can be described by defining the following:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> we wish to optimize.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">Collection</span></code> or multiple <code class="docutils literal notranslate"><span class="pre">Collection</span></code>s of <code class="docutils literal notranslate"><span class="pre">Agent</span></code>s for the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> to solve the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> using the defined <code class="docutils literal notranslate"><span class="pre">Collection</span></code> or <code class="docutils literal notranslate"><span class="pre">Collection</span></code>s.</p></li>
+</ol>
+<p>Once these high-level components are defined, we can simply call the <code class="docutils literal notranslate"><span class="pre">iterate()</span></code> method of the algorithm. This method takes various parameters, and it is recommended to consult the API documentation page (by searching for <code class="docutils literal notranslate"><span class="pre">iterate()</span></code> or finding the page manually in <code class="docutils literal notranslate"><span class="pre">core.base_class.Algorithm</span></code>) for more information. For this tutorial, we will only use <code class="docutils literal notranslate"><span class="pre">iterate(500)</span></code>, where <code class="docutils literal notranslate"><span class="pre">500</span></code> is the number of iterations to perform.</p>
+<p>You may also use the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method of the algorithm, it is essentially just a wrapper method for <code class="docutils literal notranslate"><span class="pre">iterate()</span></code>.</p>
+<section id="Provided-Benchmark-Objective-Functions">
+<h2>Provided Benchmark Objective Functions<a class="headerlink" href="#Provided-Benchmark-Objective-Functions" title="Permalink to this headline">#</a></h2>
+<p>CIFY ships with a useful utility function <code class="docutils literal notranslate"><span class="pre">get_objective_function()</span></code> that returns an <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> object. For a list of provided benchmark objective functions check out the Benchmark Objective Functions page. An example usage of this function is shown below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'schwefel'</span><span class="p">,</span> <span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;cify.core.objective_function.ObjectiveFunction at 0x137229c40&gt;
+</pre></div></div>
+</div>
+</section>
+<section id="Custom-Objective-Functions">
+<h2>Custom Objective Functions<a class="headerlink" href="#Custom-Objective-Functions" title="Permalink to this headline">#</a></h2>
+<p>We can also define custom objective functions. We will explore six characteristics of objective functions in CIFY whilst building an <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> that will have all six characteristics.</p>
+<section id="1.-Unconstrained">
+<h3>1. Unconstrained<a class="headerlink" href="#1.-Unconstrained" title="Permalink to this headline">#</a></h3>
+<p>An unconstrained single objective optimization (SOO) objective function is the most basic of all objective functions. We only need to give the function, optimization type and random number generator. If you do not care about repeatability, no random number generator needs to be passed as a default option will be used. First, we define the function we want to optimize. We’ll only be using a simple exponential function for this example.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exp_function</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vector</span><span class="p">)):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">total</span>
+</pre></div>
+</div>
+</div>
+<p><strong>NOTE: Our function only takes a vector as a parameter!</strong></p>
+<p>It is important to follow this standard as all the inner workings of the framework expect the function of an <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> object to only take a vector as a parameter. Once we’ve defined our function, we can create the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> object. We’ll pass our function, set minimization as our optimization type, pass <code class="docutils literal notranslate"><span class="pre">5</span></code> as our number of dimensions and pass the random number generator defined earlier. We’ll create a new variable, <code class="docutils literal notranslate"><span class="pre">obj_func</span></code>, from our new <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> so
+that we can change it later on.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">ObjectiveFunction</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">exp_function</span><span class="p">,</span>
+                                  <span class="n">optimization</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span>
+                                  <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">5</span>
+                                  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2.-Boundary-Constrained">
+<h3>2. Boundary Constrained<a class="headerlink" href="#2.-Boundary-Constrained" title="Permalink to this headline">#</a></h3>
+<p>What if we wish to add boundary constraints? There are two approaches to achieve this. We could redefine our <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> to have boundary constraints:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ci</span><span class="o">.</span><span class="n">ObjectiveFunction</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">exp_function</span><span class="p">,</span>
+                     <span class="n">optimization</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span>
+                     <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                     <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+                     <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;cify.core.objective_function.ObjectiveFunction at 0x137229790&gt;
+</pre></div></div>
+</div>
+<p>Or we could set the bounds after creation:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p><strong>NOTE: You only need to pass a list with two elements representing the lower and upper boundary constraints if they are the same for all dimensions.</strong></p>
+<p>If you want different bounds for some dimensions, you must pass a list of lower and upper bounds equal to the number of dimensions of the objective function. The following is a correct example of this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="3.-Adding-Vector-Constraints">
+<h3>3. Adding Vector Constraints<a class="headerlink" href="#3.-Adding-Vector-Constraints" title="Permalink to this headline">#</a></h3>
+<p>Vector constraints can also be added that constrain elements of position vectors. Due to the potential for users wanting complex vector constraints, vector constraints are passed as a list of functions, where each function takes a vector as it’s only parameter. For example, say we wish to limit the value of the 4th dimension (remember our <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> is in 5 dimensions) if it is greater than double the sum of all the other elements. Although this is a fairly esoteric example, we can
+easily define a function for this.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">limit_fourth</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="c1"># fourth dimension of vector must be less than the sum of all the other dimensions.</span>
+    <span class="k">return</span> <span class="n">vector</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p><strong>NOTE: Functions for vector constraints only take a vector as a parameter.</strong></p>
+<p>Once we have defined our vector constraint functions, we can redefine the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> like we did when defining boundary constraints passing a list of the functions as a parameter. Or we can just set the <code class="docutils literal notranslate"><span class="pre">vector_constraints</span></code> field of <code class="docutils literal notranslate"><span class="pre">obj_func</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func</span><span class="o">.</span><span class="n">vector_constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">limit_fourth</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="4.-Dynamic-Objective-Function">
+<h3>4. Dynamic Objective Function<a class="headerlink" href="#4.-Dynamic-Objective-Function" title="Permalink to this headline">#</a></h3>
+<p>Dynamic objective functions are categorized by their changing <code class="docutils literal notranslate"><span class="pre">function</span></code> field. There are a couple ways to define dynamic objective functions. To demonstrate how each approach works, we’ll define an <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> to optimize the objective function. We’ll use a simple inertia weight particle swarm optimization algorithm for this example. We’ll use a single swarm of 50 particles and set the control parameters <code class="docutils literal notranslate"><span class="pre">w</span></code> (weight), <code class="docutils literal notranslate"><span class="pre">c1</span></code> (first acceleration coefficient) and <code class="docutils literal notranslate"><span class="pre">c2</span></code> (second acceleration
+coefficient) to safe values that should result in convergence on an optimal solution. For more on importing, defining and using algorithms, check out the algorithms tutorial notebook.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.si.pso.algorithm</span> <span class="kn">import</span> <span class="n">InertiaWeightPSO</span>
+
+<span class="n">pso</span> <span class="o">=</span> <span class="n">InertiaWeightPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
+                       <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="p">)],</span>
+                       <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span><span class="mf">1.4</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span><span class="mf">1.4</span><span class="p">}</span>
+                       <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The first approach is to redefine the <code class="docutils literal notranslate"><span class="pre">function</span></code> field of your <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> after each iteration or number of iterations. This is more of a “manual” approach compared to what we’ll look at shortly.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">func_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">vector</span><span class="p">:</span> <span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">vector</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">func_3</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="o">*</span> <span class="n">vector</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Perform 10 iterations attempting to minimize the objective function defined previously.</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># First change</span>
+<span class="n">obj_func</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">func_3</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Second change</span>
+<span class="n">obj_func</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">func_2</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Third change</span>
+<span class="n">obj_func</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">func_1</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Print statistics</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">statistics</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1</th>
+<td>13.035604</td>
+<td>2.211748e+13</td>
+<td>4.467273e+11</td>
+<td>3.095861e+12</td>
+<td>13.035604</td>
+<td>253</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2.864392</td>
+<td>2.486185e+07</td>
+<td>5.655651e+05</td>
+<td>3.488678e+06</td>
+<td>2.864392</td>
+<td>455</td>
+</tr>
+<tr>
+<th>3</th>
+<td>2.373651</td>
+<td>7.628355e+11</td>
+<td>1.526532e+10</td>
+<td>1.067958e+11</td>
+<td>2.373651</td>
+<td>487</td>
+</tr>
+<tr>
+<th>4</th>
+<td>0.002189</td>
+<td>1.027258e+01</td>
+<td>1.703717e+00</td>
+<td>2.478991e+00</td>
+<td>0.000834</td>
+<td>444</td>
+</tr>
+<tr>
+<th>5</th>
+<td>0.000324</td>
+<td>1.467760e+01</td>
+<td>2.379483e+00</td>
+<td>3.093592e+00</td>
+<td>0.000324</td>
+<td>435</td>
+</tr>
+<tr>
+<th>6</th>
+<td>0.000402</td>
+<td>1.877013e+01</td>
+<td>2.075894e+00</td>
+<td>3.800000e+00</td>
+<td>0.000324</td>
+<td>477</td>
+</tr>
+<tr>
+<th>7</th>
+<td>-7.694251</td>
+<td>4.734108e+00</td>
+<td>-9.952367e-02</td>
+<td>2.683646e+00</td>
+<td>-10.932584</td>
+<td>487</td>
+</tr>
+<tr>
+<th>8</th>
+<td>-12.169194</td>
+<td>3.030978e+00</td>
+<td>-5.289125e+00</td>
+<td>3.725139e+00</td>
+<td>-12.169194</td>
+<td>496</td>
+</tr>
+<tr>
+<th>9</th>
+<td>-22.476677</td>
+<td>-2.244005e+00</td>
+<td>-1.111163e+01</td>
+<td>4.417766e+00</td>
+<td>-22.476677</td>
+<td>436</td>
+</tr>
+<tr>
+<th>10</th>
+<td>0.282850</td>
+<td>1.374401e+01</td>
+<td>4.386411e+00</td>
+<td>2.990510e+00</td>
+<td>0.040223</td>
+<td>404</td>
+</tr>
+<tr>
+<th>11</th>
+<td>0.037014</td>
+<td>1.579959e+01</td>
+<td>5.071543e+00</td>
+<td>4.155145e+00</td>
+<td>0.037014</td>
+<td>402</td>
+</tr>
+<tr>
+<th>12</th>
+<td>0.007600</td>
+<td>1.046514e+01</td>
+<td>4.252993e+00</td>
+<td>2.818408e+00</td>
+<td>0.007600</td>
+<td>440</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<p>If your function references a value that you wish to change at each iteration, you can use the <code class="docutils literal notranslate"><span class="pre">dynamic_variables</span></code> field to define how attributes of the objective function must change at each iteration.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bias</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">incr_bias</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">changing_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">vector</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">incr_bias</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">vector</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="c1"># won't work ^, will increment at every particle evaluation</span>
+
+<span class="n">obj_func</span><span class="o">.</span><span class="n">function</span>
+<span class="c1"># def dynamic_func(vector):</span>
+<span class="c1">#     return vector + bias</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="5.-Dynamic-Vector-Constraints">
+<h3>5. Dynamic Vector Constraints<a class="headerlink" href="#5.-Dynamic-Vector-Constraints" title="Permalink to this headline">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="6.-Multi--and-Many--Objectives">
+<h3>6. Multi- and Many- Objectives<a class="headerlink" href="#6.-Multi--and-Many--Objectives" title="Permalink to this headline">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="evolutionary-operators.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Evolutionary Operators</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="algorithms.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Algorithms</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, David McCleave
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Objective Functions</a><ul>
+<li><a class="reference internal" href="#Provided-Benchmark-Objective-Functions">Provided Benchmark Objective Functions</a></li>
+<li><a class="reference internal" href="#Custom-Objective-Functions">Custom Objective Functions</a><ul>
+<li><a class="reference internal" href="#1.-Unconstrained">1. Unconstrained</a></li>
+<li><a class="reference internal" href="#2.-Boundary-Constrained">2. Boundary Constrained</a></li>
+<li><a class="reference internal" href="#3.-Adding-Vector-Constraints">3. Adding Vector Constraints</a></li>
+<li><a class="reference internal" href="#4.-Dynamic-Objective-Function">4. Dynamic Objective Function</a></li>
+<li><a class="reference internal" href="#5.-Dynamic-Vector-Constraints">5. Dynamic Vector Constraints</a></li>
+<li><a class="reference internal" href="#6.-Multi--and-Many--Objectives">6. Multi- and Many- Objectives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

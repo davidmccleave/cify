@@ -1,0 +1,1283 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Objective Functions" href="objective-functions.html" /><link rel="prev" title="Basics" href="basics.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Algorithms - CIFY 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">CIFY 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">CIFY 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../what-is-cify.html">What is CIFY?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../necessary-knowledge.html">Necessary Knowledge</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../tutorials.html">Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basics.html">Basics</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objective-functions.html">Objective Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api.html">API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/cify.core.html">Core</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/cify.ec.html">Evolutionary Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.de.html">Differential Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.ea.html">Evolutionary Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.ga.html">Genetic Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.ec.operators.html">Evolutionary Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/cify.si.html">Swarm Intelligence</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/cify.si.pso.html">Particle Swarm Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Algorithms">
+<h1>Algorithms<a class="headerlink" href="#Algorithms" title="Permalink to this headline">#</a></h1>
+<p>In this tutorial, we will explore the general philosophy behind algorithms provided in this framework and we will end with a look at implementing your own algorithms from scratch, whilst maintaining compatibility with the framework. CIFY provides algorithms for swarm intelligence and evolutionary computation and all algorithms return statistics in the form of a Pandas DataFrame. We’ll start by looking at particle swarm optimization (PSO), but first, we must import cify and set a seed for all
+stochastic operations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install cify via pip:</span>
+<span class="c1"># ! pip install cify</span>
+<span class="kn">import</span> <span class="nn">cify</span> <span class="k">as</span> <span class="nn">ci</span>
+
+<span class="n">ci</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CIFY: internal seed successfully set to: '0'
+</pre></div></div>
+</div>
+<section id="PSO">
+<h2>PSO<a class="headerlink" href="#PSO" title="Permalink to this headline">#</a></h2>
+<p>Particle Swarm Optimization (PSO) algorithms use one or more swarms of particles to solve an objective function. The particles have position and velocity update operators that determine how to update their position and velocity at the end of each iteration. The velocity update operator, typically prefixed with <code class="docutils literal notranslate"><span class="pre">*_vel_update</span></code>, determines how the trajectory of a particle in search space is affected. Below are a few examples of optimizing the rosenbrock objective function using a couple PSO
+metaheuristics. First, we’ll import the algorithms and define an objective function.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.si.pso.algorithm</span> <span class="kn">import</span> <span class="n">PSO</span><span class="p">,</span> <span class="n">InertiaWeightPSO</span>
+
+<span class="c1"># Define objective function.</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'rosenbrock'</span><span class="p">,</span> <span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The standard PSO algorithm with three swarms:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">pso</span> <span class="o">=</span> <span class="n">PSO</span><span class="p">(</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">swarms</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
+    <span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
+    <span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="c1"># Execute and return the statistics of the last five iterations.</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pso</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [00:28&lt;00:00,  3.54it/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>96</th>
+<td>111.703958</td>
+<td>10033.546738</td>
+<td>4648.041998</td>
+<td>2203.011241</td>
+<td>111.703958</td>
+<td>8503</td>
+</tr>
+<tr>
+<th>97</th>
+<td>111.703958</td>
+<td>11522.656332</td>
+<td>4395.894601</td>
+<td>2385.997594</td>
+<td>111.703958</td>
+<td>8503</td>
+</tr>
+<tr>
+<th>98</th>
+<td>111.703958</td>
+<td>9709.636204</td>
+<td>3988.904745</td>
+<td>2162.019298</td>
+<td>111.703958</td>
+<td>8503</td>
+</tr>
+<tr>
+<th>99</th>
+<td>111.703958</td>
+<td>9824.141424</td>
+<td>4235.712319</td>
+<td>2073.313266</td>
+<td>111.703958</td>
+<td>8503</td>
+</tr>
+<tr>
+<th>100</th>
+<td>111.703958</td>
+<td>11972.964051</td>
+<td>4318.737118</td>
+<td>2118.621926</td>
+<td>111.703958</td>
+<td>8503</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<p>The performance of the standard PSO was ok, but not great. Let’s try using the <code class="docutils literal notranslate"><span class="pre">InertiaWeightPSO</span></code> algorithm instead. This algorithm uses a different velocity update operator that gives each particle inertia in its journey through the search space. We could also just use the <code class="docutils literal notranslate"><span class="pre">PSO</span></code> algorithm and make it use the <code class="docutils literal notranslate"><span class="pre">inertia_weight_vel_update</span></code> operator. Remember, PSO velocity update operators are stored in <code class="docutils literal notranslate"><span class="pre">cify.velocity_updates</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is just for demonstration purposes. We'll use inertia_pso to optimize the objective function.</span>
+<span class="n">using_standard_pso</span> <span class="o">=</span> <span class="n">PSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
+                         <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)],</span>
+                         <span class="n">velocity_update</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">velocity_updates</span><span class="o">.</span><span class="n">inertia_weight_vel_update</span><span class="p">)</span>
+
+<span class="c1"># Using the InertiaWeightPSO class</span>
+<span class="n">inertia_pso</span> <span class="o">=</span> <span class="n">InertiaWeightPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)])</span>
+
+<span class="n">inertia_pso</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">inertia_pso</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [00:18&lt;00:00,  5.52it/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>96</th>
+<td>27.459453</td>
+<td>10946.777377</td>
+<td>4405.792193</td>
+<td>2542.205149</td>
+<td>26.964811</td>
+<td>5460</td>
+</tr>
+<tr>
+<th>97</th>
+<td>27.331610</td>
+<td>9606.118944</td>
+<td>4086.874835</td>
+<td>2223.051825</td>
+<td>26.964811</td>
+<td>5457</td>
+</tr>
+<tr>
+<th>98</th>
+<td>25.839312</td>
+<td>8501.609323</td>
+<td>3970.045161</td>
+<td>2058.048869</td>
+<td>25.839312</td>
+<td>5459</td>
+</tr>
+<tr>
+<th>99</th>
+<td>26.359693</td>
+<td>10492.288225</td>
+<td>3837.837926</td>
+<td>2340.602586</td>
+<td>25.839312</td>
+<td>5465</td>
+</tr>
+<tr>
+<th>100</th>
+<td>25.026685</td>
+<td>8766.201689</td>
+<td>4508.877989</td>
+<td>2016.702601</td>
+<td>25.026685</td>
+<td>5459</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<p>That’s better, we’ve managed to gain a reasonable improvement over the standard PSO. Let’s try tuning the operators a little. We’ll also use 3 swarms with 75 particles each, and get them using the <code class="docutils literal notranslate"><span class="pre">get_swarms</span></code> utility method. To examine the performance of this approach, we’ll plot the <code class="docutils literal notranslate"><span class="pre">global_optimum</span></code> using matplotlib.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">tuned_pso</span> <span class="o">=</span> <span class="n">InertiaWeightPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
+                             <span class="n">swarms</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarms</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
+                             <span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span><span class="mf">1.12</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span><span class="mf">1.8</span><span class="p">},</span>
+                             <span class="p">)</span>
+
+<span class="n">tuned_pso</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tuned_pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [01:50&lt;00:00,  1.10s/it]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_algorithms_9_1.png" src="../_images/tutorials_algorithms_9_1.png"/>
+</div>
+</div>
+<p>With all those particles to simulate (3 x 75 = 225), that took a a bit longer to run. Luckily, we have some acceptable results as indicated in the graph above. But, if we look at the results of our final iteration, we have not improved at all over the previous approaches.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">tuned_pso</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>100</th>
+<td>1050.879232</td>
+<td>11703.089433</td>
+<td>4297.516689</td>
+<td>1964.308719</td>
+<td>103.682729</td>
+<td>35776</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+</section>
+<section id="GA">
+<h2>GA<a class="headerlink" href="#GA" title="Permalink to this headline">#</a></h2>
+<p>Genetic algorithms might be able to solve the Rosenbrock problem better than the previous PSO attempts. We’ll try just one approach for 100 iterations. Have a look through the API documentation for more genetic algorithm approaches, in particular, look through the evolutionary operators as adjusting these parameters will lead to the biggest improvements. We’ll use linear crossover to ensure our floating point input variables are blended. There are a range of other operators that perform blending
+in different ways. Some of the other operators, such as <code class="docutils literal notranslate"><span class="pre">uniform_crossover</span></code> or <code class="docutils literal notranslate"><span class="pre">npoint_crossover</span></code> are for discrete input variables. Once again, the API documentation is your friend.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.ec.ga.algorithm</span> <span class="kn">import</span> <span class="n">GA</span>
+
+<span class="n">ga</span> <span class="o">=</span> <span class="n">GA</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
+        <span class="n">populations</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">get_populations</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
+        <span class="n">crossover_operator</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">linear_crossover</span>
+        <span class="p">)</span>
+
+<span class="n">ga</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ga</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [00:10&lt;00:00,  9.92it/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>100</th>
+<td>2.857258e+56</td>
+<td>5.692957e+59</td>
+<td>4.345335e+58</td>
+<td>7.712478e+58</td>
+<td>670.409038</td>
+<td>1351</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+</section>
+<section id="DE">
+<h2>DE<a class="headerlink" href="#DE" title="Permalink to this headline">#</a></h2>
+<p>Differential evolution takes a different approach to finding optimal solutions. Let’s see how a DE algorithm compares to the previous approaches.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.ec.de.algorithm</span> <span class="kn">import</span> <span class="n">DE</span>
+
+<span class="n">de</span> <span class="o">=</span> <span class="n">DE</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">populations</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_population</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)])</span>
+
+<span class="n">de</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">de</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [00:04&lt;00:00, 24.71it/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>96</th>
+<td>0.209123</td>
+<td>0.703089</td>
+<td>0.466061</td>
+<td>0.123154</td>
+<td>0.163842</td>
+<td>400</td>
+</tr>
+<tr>
+<th>97</th>
+<td>0.209123</td>
+<td>0.703089</td>
+<td>0.434530</td>
+<td>0.111184</td>
+<td>0.163842</td>
+<td>400</td>
+</tr>
+<tr>
+<th>98</th>
+<td>0.201311</td>
+<td>0.703089</td>
+<td>0.389530</td>
+<td>0.111078</td>
+<td>0.163842</td>
+<td>400</td>
+</tr>
+<tr>
+<th>99</th>
+<td>0.201311</td>
+<td>0.543802</td>
+<td>0.359623</td>
+<td>0.102018</td>
+<td>0.163842</td>
+<td>400</td>
+</tr>
+<tr>
+<th>100</th>
+<td>0.170072</td>
+<td>0.543802</td>
+<td>0.327667</td>
+<td>0.101395</td>
+<td>0.163842</td>
+<td>400</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<p>Wow, so far that’s the best approach for this problem. Let’s see how the global optimum changed with each iteration.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">de</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_algorithms_17_0.png" src="../_images/tutorials_algorithms_17_0.png"/>
+</div>
+</div>
+<p>As is the case with all the other metaheuristics, there are different operators that can be used to further tune the behavior of the DE algorithm. They are located in <code class="docutils literal notranslate"><span class="pre">cify.target_vectors</span></code> and <code class="docutils literal notranslate"><span class="pre">cify.trial_vectors</span></code> for different target vector selection approaches and trial vector creation approaches respectively.</p>
+</section>
+<section id="Custom-Algorithm">
+<h2>Custom Algorithm<a class="headerlink" href="#Custom-Algorithm" title="Permalink to this headline">#</a></h2>
+<p>It’s also possible to define custom algorithms / metaheuristics. All we need to do is create a class that uses <code class="docutils literal notranslate"><span class="pre">cify.Algorithm</span></code> as its base class and overrides the <code class="docutils literal notranslate"><span class="pre">do_iteration</span></code> method. If you wanted to use the components of a certain paradigm, it is better practice to use the generic algorithm from that paradigm as the base class instead.</p>
+<p>Our custom PSO implementation is going to use the <code class="docutils literal notranslate"><span class="pre">uniform_crossover</span></code> operator from the evolutionary computation package to perform discrete uniform crossover between random pairs of particles before doing the standard iteration routine. We’ll call it <code class="docutils literal notranslate"><span class="pre">EvoPSO</span></code> since it blends a little bit of evolutionary computation with particle swarm intelligence.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EvoPSO</span><span class="p">(</span><span class="n">PSO</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">do_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">swarm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">swarms</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">swarm</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)):</span>
+                <span class="n">particles</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_rng</span><span class="p">()</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">swarm</span><span class="o">.</span><span class="n">agents</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">swarm</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
+                <span class="n">swarm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ci</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">uniform_crossover</span><span class="p">(</span><span class="n">particles</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">do_iteration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">evo_pso</span> <span class="o">=</span> <span class="n">EvoPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)])</span>
+
+<span class="n">evo_pso</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">evo_pso</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 100/100 [00:18&lt;00:00,  5.27it/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<div class="table-wrapper"><table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best</th>
+<th>worst</th>
+<th>mean</th>
+<th>stdev</th>
+<th>global_optimum</th>
+<th>n_evaluations</th>
+</tr>
+<tr>
+<th>iteration</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>96</th>
+<td>1097.248168</td>
+<td>10895.017570</td>
+<td>4410.627303</td>
+<td>2363.715753</td>
+<td>203.536983</td>
+<td>5651</td>
+</tr>
+<tr>
+<th>97</th>
+<td>1299.336260</td>
+<td>10931.679346</td>
+<td>4316.117330</td>
+<td>2002.327570</td>
+<td>203.536983</td>
+<td>5651</td>
+</tr>
+<tr>
+<th>98</th>
+<td>1159.129642</td>
+<td>10725.914508</td>
+<td>4641.166852</td>
+<td>2241.082033</td>
+<td>203.536983</td>
+<td>5651</td>
+</tr>
+<tr>
+<th>99</th>
+<td>714.747290</td>
+<td>10936.796737</td>
+<td>4536.682885</td>
+<td>1926.061391</td>
+<td>203.536983</td>
+<td>5651</td>
+</tr>
+<tr>
+<th>100</th>
+<td>1353.783962</td>
+<td>13709.697023</td>
+<td>4731.920196</td>
+<td>2393.691847</td>
+<td>203.536983</td>
+<td>5651</td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+</div>
+<p>As we can see from the final five iterations, this approach was not a good one. The crossing over of input variables must be greatly sacrificing exploitation for exploration in the search process.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="objective-functions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Objective Functions</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="basics.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Basics</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, David McCleave
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Algorithms</a><ul>
+<li><a class="reference internal" href="#PSO">PSO</a></li>
+<li><a class="reference internal" href="#GA">GA</a></li>
+<li><a class="reference internal" href="#DE">DE</a></li>
+<li><a class="reference internal" href="#Custom-Algorithm">Custom Algorithm</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

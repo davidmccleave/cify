@@ -15,7 +15,7 @@
 
 |logo|
 
-Documentation_ / Useful_ / Installation_ / Usage_ / Contact_
+Documentation_ / Useful_ / Installation_ / Usage_ / Contributing_ / Contact_
 
 CIFY: Computational Intelligence Framework for pYthon
 =============================================================================
@@ -98,6 +98,29 @@ algorithm, and finally, outputs the results of the last five iterations.
    pso.execute(100)
    pso.statistics.tail(5)
 
+.. _Contributing:
+
+Contributing
+********************************************************************************
+
+If you wish to contribute to CIFY, you'll need to clone the repository and install the necessary
+dependencies first. The steps are outlined below. We'll start by installing python and setting up pip.
+
+1. Head over to the `Python Downloads <https://www.python.org/downloads/>`_ page and select the appropriate version
+   for your operating system.
+
+2. Create a GitHub account and follow the instructions to setting up the git commandline tools.
+
+3. Use ``git clone <repo-link>`` to clone the repository to a folder on your local machine.
+
+4. `cd` into the folder and create a Python virtual environment. This step is not necessary if you'd rather install all
+   packages to your global Python instance.
+
+5. Activate the Python virtual environment and install the necessary dependencies using ``pip install -r dev-requirements.txt``.
+   This same process must be executed if you wish to tamper with the documentation. For this, `cd` into the `docs/` directory, and run
+   the command, ``pip install -r docs-requirements.txt``.
+
+You should now have the appropriate environment set up to start working on constributions.
 
 .. _Contact:
 

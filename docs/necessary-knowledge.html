@@ -1,0 +1,476 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Tutorials" href="tutorials.html" /><link rel="prev" title="Installation" href="installation.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Necessary Knowledge - CIFY 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">CIFY 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">CIFY 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what-is-cify.html">What is CIFY?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Necessary Knowledge</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/algorithms.html">Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/objective-functions.html">Objective Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/evolutionary-operators.html">Evolutionary Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/pso-operators.html">PSO Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/custom-components-reference.html">The Custom Components Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/cify.core.html">Core</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/cify.ec.html">Evolutionary Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/cify.ec.de.html">Differential Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/cify.ec.ea.html">Evolutionary Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/cify.ec.ga.html">Genetic Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/cify.ec.operators.html">Evolutionary Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/cify.si.html">Swarm Intelligence</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/cify.si.pso.html">Particle Swarm Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="necessary-knowledge">
+<h1>Necessary Knowledge<a class="headerlink" href="#necessary-knowledge" title="Permalink to this headline">#</a></h1>
+<p>There are some basic principles that are worth understanding if you wish to use this framework
+effectively. Contained in this section are the conclusions you will come to should you just
+work by trial and error from the API documentation. This could also be called the basic
+“philosophy” of the framework and you’ll avoid some errors and save yourself a lot of time
+just reading over some of these concepts. Feel free to skip to the Jupyter notebook based tutorials
+as well. They’re sufficient for most simple use cases.</p>
+<p>The following are covered:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Utilities</p></li>
+<li><p>Agents and Collections</p></li>
+<li><p>Objective Functions</p></li>
+<li><p>Algorithms</p></li>
+</ol>
+</div></blockquote>
+<section id="utilities">
+<h2>1. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<p>Before going any further, it is worth mentioning the utility functions scattered throughout the framework.
+For most packages, utility functions are provided in a <code class="docutils literal notranslate"><span class="pre">utils</span></code> module. These functions
+are useful for doing quick, common calculations or for returning common objects.
+Here are a few examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cify</span> <span class="k">as</span> <span class="nn">ci</span>
+
+<span class="n">swarm</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="n">func_name</span><span class="s2">"rosenbrock"</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_population</span><span class="p">(</span><span class="n">n_individuals</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Have a look in the API documentation for more utility functions.</p>
+</section>
+<section id="agents-and-collections">
+<h2>2. Agents and Collections<a class="headerlink" href="#agents-and-collections" title="Permalink to this headline">#</a></h2>
+<p>The majority of the paradigms covered by this framework make use of a collection of
+agents to search for optima. These agents, such as a <a class="reference internal" href="modules/cify.si.pso.html#cify.si.pso.particle.Particle" title="cify.si.pso.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particle</span></code></a>
+in a swarm, or an <a class="reference internal" href="modules/cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> in a population, share similarities
+in their behaviour. They differ in minor paradigm-specific attributes with some small tweaks for
+the paradigm of which they are a part.</p>
+<section id="collections">
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">#</a></h3>
+<p>Swarms and populations are represented by  the <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> class. A <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> contains a list
+of agents and accepts other keywords too. All the provided metaheuristics will prioritize operators defined as attributes
+to the collection they are iterating over, over their defaults. Furthermore, they will prioritize operators defined
+as attributes to each <code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code> over anything else. This allows you to give a single agent separate components
+to use or a certain population a different crossover operator to use, for example. The <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> class
+has some useful methods as well, such as the <code class="docutils literal notranslate"><span class="pre">min</span></code> or <code class="docutils literal notranslate"><span class="pre">max</span></code> methods that return the minimum or maximum valued
+agents with respect to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>. A <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> can also return a Pandas DataFrame
+representation of itself and all its agents. The columns of this DataFrame represent attributes of the agents in the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>.</p>
+</section>
+<section id="position">
+<h3>Position<a class="headerlink" href="#position" title="Permalink to this headline">#</a></h3>
+<p>All agents use <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> objects to store their position in the search space of their <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.
+It should not be necessary for you to instantiate any <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a>
+objects, however, you may call their fields when creating your own algorithms or when you wish to
+gain more insight on the agents.
+The <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> object has three primary attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func</span>
+<span class="n">vector</span>
+<span class="n">value</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">obj_func</span></code> field represents a <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> object. This
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> object is used for evaluation by the <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> and evaluation is done
+intelligently when the <code class="docutils literal notranslate"><span class="pre">value</span></code> field is called. This way you don’t need to worry about unnecessary
+evaluations and algorithm running times, as well as their use of the computational budget, are minimized.</p>
+<p>Accessing the three fields of a <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> object, through a
+<a class="reference internal" href="modules/cify.si.pso.html#cify.si.pso.particle.Particle" title="cify.si.pso.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particle</span></code></a> object, typically looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">particle</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">Particle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">obj_func</span>
+<span class="n">vector</span>   <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">vector</span>
+<span class="n">value</span>    <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>You could also access the <code class="docutils literal notranslate"><span class="pre">vector</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> fields directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span>   <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">vector</span>
+<span class="n">value</span>    <span class="o">=</span> <span class="n">particle</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>Rarely would <code class="docutils literal notranslate"><span class="pre">particle.position.obj_func</span></code> be accessed directly. Typically, the <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.
+would be called directly from where it was instantiated.</p>
+</section>
+</section>
+<section id="objective-functions">
+<h2>3. Objective Functions<a class="headerlink" href="#objective-functions" title="Permalink to this headline">#</a></h2>
+<p>There are two objective function classes, <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code></a>
+and <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.MultiObjectiveFunction" title="cify.core.objective_function.MultiObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveFunction</span></code></a>. The latter acts as a wrapper class
+for the former and simply takes a list of <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code></a>
+objects on initialization. Objective functions represent a problem or set of problems to be optimized
+by a meta-heuristic. Check out tutorial on the <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> class for more information on quickly
+importing objective functions using the <code class="docutils literal notranslate"><span class="pre">get_objective_function</span></code> utility method, and defining your own custom
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction.</span></code>.</p>
+<p>There are six primary types of objective functions that encompass the vast majority of optimization problems.
+Some problems may present themselves as combinations of any of these six classes.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Unconstrained</strong> - A function that does not possess constraints on any of its variables / dimensions.</p></li>
+<li><p><strong>Boundary Constrained</strong> - A function that contains real-valued constraints on one or more of its variables / dimensions.</p></li>
+<li><p><strong>Dynamic</strong> - A function that changes with respect to some variable such as time.</p></li>
+<li><p><strong>Single-objective</strong> - A function that has only one objective to optimize.</p></li>
+<li><p><strong>Multi-objective</strong> - A function containing multiple objectives to optimize, typically in conjunction with each other.</p></li>
+<li><p><strong>Multi-modal</strong> - A function that contains multiple optima in different regions of its search space.</p></li>
+</ol>
+</div></blockquote>
+<p>Representing them in CIFY is covered in the tutorial.</p>
+</section>
+<section id="algorithms">
+<h2>4. Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">#</a></h2>
+<p>All algorithms inherit the <code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code> base class. This base class
+acts as an interface and contains implementations of useful functions used by utility functions
+that operate on algorithm objects as well as to provide ease of use for the end user. It is
+standard practice to iterate an algorithm using the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">iterate()</span></code> base class function. This</p>
+<section id="the-importance-of-parameters">
+<h3>The Importance of Parameters<a class="headerlink" href="#the-importance-of-parameters" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To pass parameters to any operator used by a metaheuristic use the corresponding <code class="docutils literal notranslate"><span class="pre">&lt;operator-name&gt;_params</span></code>
+argument.</p>
+</div>
+<p>The arguments passed to an algorithm are used to define parameters for inner functions or operators.
+These parameters are always given in a corresponding attribute, <code class="docutils literal notranslate"><span class="pre">&lt;operator-type&gt;_params</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;operator-type&gt;</span></code>
+is the type of the operator, for example, <code class="docutils literal notranslate"><span class="pre">velocity</span></code>, <code class="docutils literal notranslate"><span class="pre">crossover</span></code>, <code class="docutils literal notranslate"><span class="pre">selection</span></code> or <code class="docutils literal notranslate"><span class="pre">mutation</span></code>.</p>
+<p>Consider the example below, where the objective function to be optimized and the swarm to optimize it has
+already been defined:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">InertiaWeightPSO</span><span class="p">(</span>
+    <span class="n">obj_func</span><span class="o">=</span><span class="n">example_obj_func</span><span class="p">,</span>
+    <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">example_swarm</span><span class="p">],</span>
+    <span class="n">topology</span><span class="o">=</span><span class="n">ring_topology</span><span class="p">,</span>
+    <span class="n">topology_params</span><span class="p">{</span><span class="s1">'n_size'</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, we are passing the additional argument, <code class="docutils literal notranslate"><span class="pre">n_size</span></code> to the algorithm to define the neighbourhood
+size used by the ring topology function. We are also passing the values for the variables, <code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">c1</span></code> and <code class="docutils literal notranslate"><span class="pre">c2</span></code>
+to be used by the <code class="docutils literal notranslate"><span class="pre">velocity_update</span></code> function.</p>
+<p>This way of thinking applies across all meta-heuristics provided and their generalised forms, and is strongly encouraged
+when you implement custom algorithms and functions. Any time you want to use custom components, include any extra
+variables as parameters to the function itself.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When implementing your own custom algorithms, the only necessary function to override is the <code class="docutils literal notranslate"><span class="pre">do_iteration</span></code>
+function. This function performs the logic of a single iteration of the algorithm and is used
+by internal methods in the base class <code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code>. The basic template is
+shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyNewMetaHeuristic</span><span class="p">(</span><span class="n">ci</span><span class="o">.</span><span class="n">Algorithm</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">do_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="k">return</span> <span class="n">collections</span>
+</pre></div>
+</div>
+<p>Use <cite>__init__</cite> for your algorithm fields and setup.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <cite>do_iteration</cite> method should return a list of all the <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> objects that were used by
+your metaheuristic during the iteration. This list is used to update the <code class="docutils literal notranslate"><span class="pre">statistics</span></code> DataFrame handled by
+the base class.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="tutorials.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Tutorials</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="installation.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Installation</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, David McCleave
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Necessary Knowledge</a><ul>
+<li><a class="reference internal" href="#utilities">1. Utilities</a></li>
+<li><a class="reference internal" href="#agents-and-collections">2. Agents and Collections</a><ul>
+<li><a class="reference internal" href="#collections">Collections</a></li>
+<li><a class="reference internal" href="#position">Position</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#objective-functions">3. Objective Functions</a></li>
+<li><a class="reference internal" href="#algorithms">4. Algorithms</a><ul>
+<li><a class="reference internal" href="#the-importance-of-parameters">The Importance of Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

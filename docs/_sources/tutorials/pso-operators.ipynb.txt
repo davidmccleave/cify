@@ -1,0 +1,187 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "source": [
+    "# PSO Operators\n",
+    "\n",
+    "Particle swarm optimization (PSO) operators refers the the velocity and position update functions used in a PSO algorithm. These operators can be set at three levels. Operators can be set to be used by a specific `Particle`,\n",
+    "for all particles in a swarm (a `Collection` of particles), or for all particles involved in a certain `Algorithm`.\n",
+    "\n",
+    "If a `Particle` has it's own operators, they will take highest preference. Second preference goes to the operators of the `Collection`. If no operators are set to either of these, the `Algorithm` operators will be used.\n",
+    "\n",
+    "All `Algorithm`s have default operators if you do not wish to specify any. An example of this priority order is shown in the code snippet below.\n",
+    "\n",
+    "Remember, some operators have optional parameters. These parameters are always passed as a dictionary to the variable with the name `<operator-name>_params`. Possible operators to customize for particles and swarms are:\n",
+    "\n",
+    "- `velocity_update`\n",
+    "- `position_update`\n",
+    "- `topology`\n",
+    "\n",
+    "The `topology` parameter does not have any additional parameters."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": true,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "CIFY: internal seed successfully set to: '0'\n"
+     ]
+    }
+   ],
+   "source": [
+    "import cify as ci\n",
+    "from cify.si.pso.algorithm import PSO\n",
+    "from cify.si.pso.velocity_updates import inertia_weight_vel_update, constriction_coefficient_vel_update\n",
+    "\n",
+    "ci.set_seed(0)\n",
+    "obj_func = ci.get_objective_function('exponential', n_dimensions=5)\n",
+    "swarms = ci.get_swarms(3, n_particles=50, obj_func=obj_func)\n",
+    "\n",
+    "# Setting a custom velocity update with parameters for a single Particle.\n",
+    "swarms[0][0].velocity_update = inertia_weight_vel_update\n",
+    "swarms[0][0].velocity_params = {'w': 0.72, 'c1': 1.4, 'c2': 1.4}\n",
+    "\n",
+    "# Setting a custom velocity update with parameters for one of the swarms.\n",
+    "swarms[1].velocity_update = constriction_coefficient_vel_update\n",
+    "swarms[1].velocity_params = {'k': 0.75, 'c1': 1.4, 'c2': 1.4}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Once we have defined custom operators, we can define and execute an algorithm using these swarms."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "outputs": [],
+   "source": [
+    "pso = PSO(obj_func=obj_func, swarms=swarms)\n",
+    "pso.execute(10)"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "If we take a look at the particle and swarm that we modified, we'll see that they are using the custom operators we defined previously."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "<function cify.si.pso.velocity_updates.inertia_weight_vel_update(particle: cify.si.pso.particle.Particle, **velocity_params)>"
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# The modified particle\n",
+    "pso.swarms[0][0].velocity_update"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "<function cify.si.pso.velocity_updates.constriction_coefficient_vel_update(particle: cify.si.pso.particle.Particle, **velocity_params)>"
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# The modified swarm\n",
+    "pso.swarms[1].velocity_update"
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%%\n"
+    }
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Combining custom operators and setting the `name` attribute of particles or swarms using custom operators allows for easy control parameter customization and tracking."
+   ],
+   "metadata": {
+    "collapsed": false,
+    "pycharm": {
+     "name": "#%% md\n"
+    }
+   }
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
