@@ -44,11 +44,6 @@ To install the latest stable release via `pip`:
 
     pip install cify
 
-From source:
-
-.. code-block:: bash
-
-    <todo: add source installation instructions here>
 
 .. _Usage:
 
@@ -65,16 +60,16 @@ algorithm, and finally, outputs the results of the last five iterations.
    from cify.si.pso.algorithm import InertiaWeightPSO
 
    # Set internal seed
-   set_seed(0)
+   ci.set_seed(0)
 
-   # Define objective function.
+   # 1. Define objective function.
    obj_func = ci.get_objective_function('rosenbrock', ci.Optimization.Min)
 
-   # Create swarm and algorithm.
-   swarm = ci.get_swarm(10, obj_func=obj_func)
+   # 2. Create swarm and metaheuristic.
+   swarm = ci.get_swarm(50, obj_func=obj_func)
    pso = InertiaWeightPSO(obj_func, swarms=[swarm])
 
-   # Perform 100 iterations and return the statistics of the last 5.
+   # 3. Perform 100 iterations and return the statistics of the last 5.
    pso.execute(100)
    pso.statistics.tail(5)
 
