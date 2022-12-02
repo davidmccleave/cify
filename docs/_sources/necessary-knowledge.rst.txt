@@ -89,7 +89,7 @@ Rarely would ``particle.position.obj_func`` be accessed directly. Typically, the
 would be called directly from where it was instantiated.
 
 3. Objective Functions
--------------------
+----------------------
 
 There are two objective function classes, :class:`~cify.core.objective_function.ObjectiveFunction`
 and :class:`~cify.core.objective_function.MultiObjectiveFunction`. The latter acts as a wrapper class

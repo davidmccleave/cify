@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PSO Operators" href="pso-operators.html" /><link rel="prev" title="Objective Functions" href="objective-functions.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Evolutionary Operators - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -474,7 +476,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Evolutionary-Operators">
-<h1>Evolutionary Operators<a class="headerlink" href="#Evolutionary-Operators" title="Permalink to this headline">#</a></h1>
+<h1>Evolutionary Operators<a class="headerlink" href="#Evolutionary-Operators" title="Permalink to this heading">#</a></h1>
 <p>There are three evolutionary operators that can be customized per <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> or <code class="docutils literal notranslate"><span class="pre">Collection</span></code> (generic representation of a population). The three operators are:</p>
 <ul class="simple">
 <li><p>selection_operator</p></li>
@@ -505,7 +507,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CIFY: internal seed successfully set to: '0'
+CIFY: internal seed successfully set to: &#39;0&#39;
 </pre></div></div>
 </div>
 <p>Next, we will define a genetic algorithm to customize.</p>
@@ -516,9 +518,9 @@ CIFY: internal seed successfully set to: '0'
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.ec.ga.algorithm</span> <span class="kn">import</span> <span class="n">GA</span>
 
 <span class="c1"># Define the objective function to optimize.</span>
-<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'exponential'</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">&#39;exponential&#39;</span><span class="p">)</span>
 
-<span class="c1"># Define the populations we'll use.</span>
+<span class="c1"># Define the populations we&#39;ll use.</span>
 <span class="n">populations</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_populations</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_individuals</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
 
 <span class="c1"># Define the genetic algorithm</span>
@@ -527,7 +529,7 @@ CIFY: internal seed successfully set to: '0'
 </div>
 </div>
 <section id="Selection-Operators">
-<h2>Selection Operators<a class="headerlink" href="#Selection-Operators" title="Permalink to this headline">#</a></h2>
+<h2>Selection Operators<a class="headerlink" href="#Selection-Operators" title="Permalink to this heading">#</a></h2>
 <p>Let’s first take a look at the default selection operator assigned to the genetic algorithm.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -549,7 +551,7 @@ CIFY: internal seed successfully set to: '0'
 </div>
 </section>
 <section id="Crossover-Operators">
-<h2>Crossover Operators<a class="headerlink" href="#Crossover-Operators" title="Permalink to this headline">#</a></h2>
+<h2>Crossover Operators<a class="headerlink" href="#Crossover-Operators" title="Permalink to this heading">#</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -562,13 +564,13 @@ CIFY: internal seed successfully set to: '0'
         <span class="bp">self</span><span class="o">.</span><span class="n">crossover_params</span> <span class="o">=</span> <span class="n">crossover_params</span>
 
     <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s1">'n_parents'</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossover_params</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossover_params</span><span class="p">[</span><span class="s1">'n_parents'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">'2 parents'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;n_parents&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossover_params</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossover_params</span><span class="p">[</span><span class="s1">&#39;n_parents&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2 parents&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">'hmm'</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hmm&#39;</span><span class="p">)</span>
 
-<span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'testes'</span><span class="p">,</span> <span class="n">crossover_params</span><span class="o">=</span><span class="p">{</span><span class="s1">'n_parents'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'n_offspring'</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;testes&#39;</span><span class="p">,</span> <span class="n">crossover_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_parents&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;n_offspring&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
 <span class="n">test</span><span class="o">.</span><span class="n">do</span><span class="p">()</span>
 <br/></pre></div>
 </div>
@@ -583,7 +585,7 @@ CIFY: internal seed successfully set to: '0'
 </div>
 </section>
 <section id="Mutation-Operators">
-<h2>Mutation Operators<a class="headerlink" href="#Mutation-Operators" title="Permalink to this headline">#</a></h2>
+<h2>Mutation Operators<a class="headerlink" href="#Mutation-Operators" title="Permalink to this heading">#</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -670,6 +672,7 @@ CIFY: internal seed successfully set to: '0'
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

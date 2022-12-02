@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Tutorials" href="tutorials.html" /><link rel="prev" title="Installation" href="installation.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Necessary Knowledge - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorials/evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -218,7 +220,7 @@
         </div>
         <article role="main">
           <section id="necessary-knowledge">
-<h1>Necessary Knowledge<a class="headerlink" href="#necessary-knowledge" title="Permalink to this headline">#</a></h1>
+<h1>Necessary Knowledge<a class="headerlink" href="#necessary-knowledge" title="Permalink to this heading">#</a></h1>
 <p>There are some basic principles that are worth understanding if you wish to use this framework
 effectively. Contained in this section are the conclusions you will come to should you just
 work by trial and error from the API documentation. This could also be called the basic
@@ -235,7 +237,7 @@ as well. They’re sufficient for most simple use cases.</p>
 </ol>
 </div></blockquote>
 <section id="utilities">
-<h2>1. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<h2>1. Utilities<a class="headerlink" href="#utilities" title="Permalink to this heading">#</a></h2>
 <p>Before going any further, it is worth mentioning the utility functions scattered throughout the framework.
 For most packages, utility functions are provided in a <code class="docutils literal notranslate"><span class="pre">utils</span></code> module. These functions
 are useful for doing quick, common calculations or for returning common objects.
@@ -243,21 +245,21 @@ Here are a few examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cify</span> <span class="k">as</span> <span class="nn">ci</span>
 
 <span class="n">swarm</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
-<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="n">func_name</span><span class="s2">"rosenbrock"</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="n">func_name</span><span class="s2">&quot;rosenbrock&quot;</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">population</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_population</span><span class="p">(</span><span class="n">n_individuals</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Have a look in the API documentation for more utility functions.</p>
 </section>
 <section id="agents-and-collections">
-<h2>2. Agents and Collections<a class="headerlink" href="#agents-and-collections" title="Permalink to this headline">#</a></h2>
+<h2>2. Agents and Collections<a class="headerlink" href="#agents-and-collections" title="Permalink to this heading">#</a></h2>
 <p>The majority of the paradigms covered by this framework make use of a collection of
 agents to search for optima. These agents, such as a <a class="reference internal" href="modules/cify.si.pso.html#cify.si.pso.particle.Particle" title="cify.si.pso.particle.Particle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Particle</span></code></a>
 in a swarm, or an <a class="reference internal" href="modules/cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> in a population, share similarities
 in their behaviour. They differ in minor paradigm-specific attributes with some small tweaks for
 the paradigm of which they are a part.</p>
 <section id="collections">
-<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">#</a></h3>
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this heading">#</a></h3>
 <p>Swarms and populations are represented by  the <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> class. A <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> contains a list
 of agents and accepts other keywords too. All the provided metaheuristics will prioritize operators defined as attributes
 to the collection they are iterating over, over their defaults. Furthermore, they will prioritize operators defined
@@ -269,7 +271,7 @@ representation of itself and all its agents. The columns of this DataFrame repre
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>.</p>
 </section>
 <section id="position">
-<h3>Position<a class="headerlink" href="#position" title="Permalink to this headline">#</a></h3>
+<h3>Position<a class="headerlink" href="#position" title="Permalink to this heading">#</a></h3>
 <p>All agents use <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> objects to store their position in the search space of their <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.
 It should not be necessary for you to instantiate any <a class="reference internal" href="modules/cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a>
 objects, however, you may call their fields when creating your own algorithms or when you wish to
@@ -303,7 +305,7 @@ would be called directly from where it was instantiated.</p>
 </section>
 </section>
 <section id="objective-functions">
-<h2>3. Objective Functions<a class="headerlink" href="#objective-functions" title="Permalink to this headline">#</a></h2>
+<h2>3. Objective Functions<a class="headerlink" href="#objective-functions" title="Permalink to this heading">#</a></h2>
 <p>There are two objective function classes, <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code></a>
 and <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.MultiObjectiveFunction" title="cify.core.objective_function.MultiObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiObjectiveFunction</span></code></a>. The latter acts as a wrapper class
 for the former and simply takes a list of <a class="reference internal" href="modules/cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code></a>
@@ -326,14 +328,14 @@ Some problems may present themselves as combinations of any of these six classes
 <p>Representing them in CIFY is covered in the tutorial.</p>
 </section>
 <section id="algorithms">
-<h2>4. Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">#</a></h2>
+<h2>4. Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading">#</a></h2>
 <p>All algorithms inherit the <code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code> base class. This base class
 acts as an interface and contains implementations of useful functions used by utility functions
 that operate on algorithm objects as well as to provide ease of use for the end user. It is
 standard practice to iterate an algorithm using the
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">iterate()</span></code> base class function. This</p>
 <section id="the-importance-of-parameters">
-<h3>The Importance of Parameters<a class="headerlink" href="#the-importance-of-parameters" title="Permalink to this headline">#</a></h3>
+<h3>The Importance of Parameters<a class="headerlink" href="#the-importance-of-parameters" title="Permalink to this heading">#</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To pass parameters to any operator used by a metaheuristic use the corresponding <code class="docutils literal notranslate"><span class="pre">&lt;operator-name&gt;_params</span></code>
@@ -348,8 +350,8 @@ already been defined:</p>
     <span class="n">obj_func</span><span class="o">=</span><span class="n">example_obj_func</span><span class="p">,</span>
     <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">example_swarm</span><span class="p">],</span>
     <span class="n">topology</span><span class="o">=</span><span class="n">ring_topology</span><span class="p">,</span>
-    <span class="n">topology_params</span><span class="p">{</span><span class="s1">'n_size'</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">},</span>
+    <span class="n">topology_params</span><span class="p">{</span><span class="s1">&#39;n_size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -469,6 +471,7 @@ the base class.</p>
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

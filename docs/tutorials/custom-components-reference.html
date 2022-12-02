@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Benchmark Objective Functions" href="../benchmark-objective-functions.html" /><link rel="prev" title="PSO Operators" href="pso-operators.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Contributing" href="contributing.html" /><link rel="prev" title="PSO Operators" href="pso-operators.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>The Custom Components Reference - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -474,10 +476,10 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="The-Custom-Components-Reference">
-<h1>The Custom Components Reference<a class="headerlink" href="#The-Custom-Components-Reference" title="Permalink to this headline">#</a></h1>
+<h1>The Custom Components Reference<a class="headerlink" href="#The-Custom-Components-Reference" title="Permalink to this heading">#</a></h1>
 <p>This tutorial is meant to be used as a quick reference for when you want to develop your own custom components and need to know which parameters they must take or methods to implement.</p>
 <section id="Algorithm">
-<h2>Algorithm<a class="headerlink" href="#Algorithm" title="Permalink to this headline">#</a></h2>
+<h2>Algorithm<a class="headerlink" href="#Algorithm" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Define a new class that extends either <code class="docutils literal notranslate"><span class="pre">cify.Algorithm</span></code>, or a generic class of the paradigm you will most closely replicate. For example, <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">CustomPSO(PSO):</span></code>.</p></li>
 <li><p>Define the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method to take <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> as arguments. You may also pass your own additional fields / attributes as the example shows using <code class="docutils literal notranslate"><span class="pre">custom_field</span></code>.</p></li>
@@ -512,7 +514,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Agent">
-<h2>Agent<a class="headerlink" href="#Agent" title="Permalink to this headline">#</a></h2>
+<h2>Agent<a class="headerlink" href="#Agent" title="Permalink to this heading">#</a></h2>
 <p>Defining a custom <code class="docutils literal notranslate"><span class="pre">Agent</span></code> requires overriding three methods as shown below. You may also opt to define an <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method for custom attributes / fields. Remember, you can use these fields to return anything. Get creative.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -524,24 +526,24 @@ div.rendered_html tbody tr:hover {
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ci</span><span class="o">.</span><span class="n">Position</span><span class="p">:</span>
-        <span class="c1"># Return the agent's position</span>
+        <span class="c1"># Return the agent&#39;s position</span>
         <span class="k">pass</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">p_best_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ci</span><span class="o">.</span><span class="n">Position</span><span class="p">:</span>
-        <span class="c1"># Return the agent's personal best position</span>
+        <span class="c1"># Return the agent&#39;s personal best position</span>
         <span class="k">pass</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">social_best_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ci</span><span class="o">.</span><span class="n">Position</span><span class="p">:</span>
-        <span class="c1"># Return the agent's social best position</span>
+        <span class="c1"># Return the agent&#39;s social best position</span>
         <span class="k">pass</span>
 <br/></pre></div>
 </div>
 </div>
 </section>
 <section id="Topology">
-<h2>Topology<a class="headerlink" href="#Topology" title="Permalink to this headline">#</a></h2>
+<h2>Topology<a class="headerlink" href="#Topology" title="Permalink to this heading">#</a></h2>
 <p>Creating your own topology requires accepting three necessary parameters:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">agent</span></code></p></li>
@@ -563,7 +565,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="ObjectiveFunction">
-<h2>ObjectiveFunction<a class="headerlink" href="#ObjectiveFunction" title="Permalink to this headline">#</a></h2>
+<h2>ObjectiveFunction<a class="headerlink" href="#ObjectiveFunction" title="Permalink to this heading">#</a></h2>
 <p>Defining your own objective function is fairly straightforward. The example below defines a simple objective function where the objective is to minimize the absolute sum of all input variables (elements in a candidate solution’s vector). An example vector constraint is also given. The constraint simply makes sure that the first element of the vector is not less than 1. This will mean any metaheuristic that attempts to solve the objective function will have to use negative values in the other
 vector positions to alleviate this constraint.</p>
 <div class="nbinput nblast docutils container">
@@ -617,7 +619,7 @@ vector positions to alleviate this constraint.</p>
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -630,47 +632,47 @@ vector positions to alleviate this constraint.</p>
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>150</th>
-<td>0.201879</td>
-<td>46.061525</td>
-<td>16.127577</td>
-<td>11.388007</td>
-<td>0.000434</td>
-<td>5451</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>150</th>
+      <td>0.201879</td>
+      <td>46.061525</td>
+      <td>16.127577</td>
+      <td>11.388007</td>
+      <td>0.000434</td>
+      <td>5451</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 </section>
 <section id="Evolutionary-Operators">
-<h2>Evolutionary Operators<a class="headerlink" href="#Evolutionary-Operators" title="Permalink to this headline">#</a></h2>
+<h2>Evolutionary Operators<a class="headerlink" href="#Evolutionary-Operators" title="Permalink to this heading">#</a></h2>
 <p>All evolutionary operators take <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> as a parameter to avoid generating the “unexpected keyword arguments” <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <section id="Selection-Operators">
-<h3>Selection Operators<a class="headerlink" href="#Selection-Operators" title="Permalink to this headline">#</a></h3>
+<h3>Selection Operators<a class="headerlink" href="#Selection-Operators" title="Permalink to this heading">#</a></h3>
 <p>Selection operators operate on a population, you only need to take as parameters:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">population</span></code></p></li>
@@ -691,7 +693,7 @@ vector positions to alleviate this constraint.</p>
 </div>
 </section>
 <section id="Mutation-Operators">
-<h3>Mutation Operators<a class="headerlink" href="#Mutation-Operators" title="Permalink to this headline">#</a></h3>
+<h3>Mutation Operators<a class="headerlink" href="#Mutation-Operators" title="Permalink to this heading">#</a></h3>
 <p>Mutation operators operate on a single individual. The parameters your function must take:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">individual</span></code></p></li>
@@ -712,7 +714,7 @@ vector positions to alleviate this constraint.</p>
 </div>
 </section>
 <section id="Crossover-Operators">
-<h3>Crossover Operators<a class="headerlink" href="#Crossover-Operators" title="Permalink to this headline">#</a></h3>
+<h3>Crossover Operators<a class="headerlink" href="#Crossover-Operators" title="Permalink to this heading">#</a></h3>
 <p>Crossover operators operate on the given parents. The CIFY provided crossover operators specify the types <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">cify.Collection</span></code>, however, you do not need to. The two parameters to take:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">parents</span></code></p></li>
@@ -740,12 +742,12 @@ vector positions to alleviate this constraint.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../benchmark-objective-functions.html">
+          <a class="next-page" href="contributing.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Benchmark Objective Functions</div>
+                <div class="title">Contributing</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -817,6 +819,7 @@ vector positions to alleviate this constraint.</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

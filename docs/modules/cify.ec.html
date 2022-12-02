@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Differential Evolution" href="cify.ec.de.html" /><link rel="prev" title="Core" href="cify.core.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Evolutionary Computation - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -218,7 +220,7 @@
         </div>
         <article role="main">
           <section id="module-cify.ec">
-<span id="evolutionary-computation"></span><h1>Evolutionary Computation<a class="headerlink" href="#module-cify.ec" title="Permalink to this headline">#</a></h1>
+<span id="evolutionary-computation"></span><h1>Evolutionary Computation<a class="headerlink" href="#module-cify.ec" title="Permalink to this heading">#</a></h1>
 <p>Evolutionary computation (EC) is a family of metaheuristics used for optimization of an <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>
 that are inspired by the process of biological evolution. The algorithms all rely on trial and error and are driven
 towards optimal solutions through imitating natural selection. Currently, there are three major paradigms provided
@@ -233,7 +235,7 @@ and you are welcome to post issues if you are struggling to implement an algorit
 <p>This package contains the evolutionary algorithms mentioned previously as well as their major component,
 evolutionary operators.</p>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">#</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cify.ec.de.html">Differential Evolution</a><ul>
@@ -260,11 +262,11 @@ evolutionary operators.</p>
 </div>
 </section>
 <section id="module-cify.ec.individual">
-<span id="individual"></span><h2>Individual<a class="headerlink" href="#module-cify.ec.individual" title="Permalink to this headline">#</a></h2>
+<span id="individual"></span><h2>Individual<a class="headerlink" href="#module-cify.ec.individual" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Individual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">cify.core.objective_function.ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="cify.core.html#cify.core.base_classes.agent.Agent" title="cify.core.base_classes.agent.Agent"><code class="xref py py-class docutils literal notranslate"><span class="pre">cify.core.base_classes.agent.Agent</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Individual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="cify.core.html#cify.core.base_classes.agent.Agent" title="cify.core.base_classes.agent.Agent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code></a></p>
 <p>Defines an <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> for use in evolutionary computation.</p>
 <p><a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> s are at the core of any evolutionary computation algorithm. When instantiating an
 <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a>, it is only necessary to supply an <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>. If no chromosome is provided,
@@ -272,9 +274,9 @@ the elements of the chromosome will be sampled from a uniform distribution withi
 <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">cify.core.objective_function.ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual.__init__" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual.__init__" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>chromosome</strong> (<a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code></a> or array-like) – The initial chromosome.</p></li>
 <li><p><strong>obj_func</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>) – The objective function used for evaluation and bounds by the <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a>.</p></li>
@@ -282,80 +284,93 @@ the elements of the chromosome will be sampled from a uniform distribution withi
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.position">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.position" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.position" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.chromosome">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.chromosome" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.chromosome" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.p_best_position">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_best_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.p_best_position" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_best_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.p_best_position" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the personal best <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.p_best_chromosome">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_best_chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.p_best_chromosome" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_best_chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.p_best_chromosome" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the personal best <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.social_best_chromosome">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">social_best_chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.social_best_chromosome" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">social_best_chromosome</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.social_best_chromosome" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the social or neighbourhood best <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.social_best_pos">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">social_best_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">cify.core.position.Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.social_best_pos" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">social_best_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.position.Position" title="cify.core.position.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.social_best_pos" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the social or neighbourhood best <code class="docutils literal notranslate"><span class="pre">chromosome</span></code> as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Position</span></code> object.</p>
 </dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.obj_func">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obj_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">cify.core.objective_function.ObjectiveFunction</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.obj_func" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obj_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">ObjectiveFunction</span></a></em><a class="headerlink" href="#cify.ec.individual.Individual.obj_func" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> this <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> will be optimizing.</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.reinit_uniform_chromosome">
 <span class="sig-name descname"><span class="pre">reinit_uniform_chromosome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual.reinit_uniform_chromosome" title="Permalink to this definition">#</a></dt>
 <dd><p>Reinitializes the <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a>’s chromosome uniformly within the bounds of the search space.’</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.evaluate">
 <span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual.evaluate" title="Permalink to this definition">#</a></dt>
 <dd><p>Evaluates the <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a>’s chromosome.</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.satisfies_constraints">
-<span class="sig-name descname"><span class="pre">satisfies_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cify.ec.individual.Individual.satisfies_constraints" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">satisfies_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cify.ec.individual.Individual.satisfies_constraints" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks whether the <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> satisfies the constraints
 of its <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p>
 </dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="cify.ec.individual.Individual.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.individual.Individual.copy" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates and returns a copy of the <a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a> object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A copy of the original individual object.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
+
 </dd></dl>
+
 </section>
 <section id="module-cify.ec.utils">
-<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-cify.ec.utils" title="Permalink to this headline">#</a></h2>
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-cify.ec.utils" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.utils.get_population">
-<span class="sig-name descname"><span class="pre">get_population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">cify.core.objective_function.ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><span class="pre">cify.core.base_classes.collection.Collection</span></a></span></span><a class="headerlink" href="#cify.ec.utils.get_population" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><span class="pre">Collection</span></a></span></span><a class="headerlink" href="#cify.ec.utils.get_population" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code> objects.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_individuals</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code> s in the population, defaults to 50</p></li>
 <li><p><strong>obj_func</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> to generate a population of <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code> s for.</p></li>
@@ -372,20 +387,21 @@ If an <code class="xref py py-class docutils literal notranslate"><span class="p
 within the bounds of the <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A population of individuals.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code> s</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.utils.get_populations">
-<span class="sig-name descname"><span class="pre">get_populations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_populations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">cify.core.objective_function.ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><span class="pre">cify.core.base_classes.collection.Collection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cify.ec.utils.get_populations" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_populations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_populations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_individuals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.objective_function.ObjectiveFunction" title="cify.core.objective_function.ObjectiveFunction"><span class="pre">ObjectiveFunction</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><span class="pre">Collection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cify.ec.utils.get_populations" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> s of <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code> objects. In other words, a list of populations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_populations</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of populations to return, defaults to 3</p></li>
 <li><p><strong>n_individuals</strong> (<em>int</em><em> or </em><em>list of ints</em><em>, </em><em>optional</em>) – The number of individuals in each population or all populations, defaults to 50</p></li>
@@ -397,14 +413,15 @@ If an <code class="xref py py-class docutils literal notranslate"><span class="p
 <li><p><strong>lower_bounds</strong> (<em>float</em><em> or </em><em>array_like of floats</em><em>, </em><em>optional</em>) – An array or scalar value representing the lower bounds to initialize individuals within.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of populations for the given <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> objects</p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 </section>
 
@@ -483,6 +500,7 @@ If an <code class="xref py py-class docutils literal notranslate"><span class="p
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

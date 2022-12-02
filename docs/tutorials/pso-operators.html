@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="The Custom Components Reference" href="custom-components-reference.html" /><link rel="prev" title="Evolutionary Operators" href="evolutionary-operators.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>PSO Operators - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -474,7 +476,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="PSO-Operators">
-<h1>PSO Operators<a class="headerlink" href="#PSO-Operators" title="Permalink to this headline">#</a></h1>
+<h1>PSO Operators<a class="headerlink" href="#PSO-Operators" title="Permalink to this heading">#</a></h1>
 <p>Particle swarm optimization (PSO) operators refers the the velocity and position update functions used in a PSO algorithm. These operators can be set at three levels. Operators can be set to be used by a specific <code class="docutils literal notranslate"><span class="pre">Particle</span></code>, for all particles in a swarm (a <code class="docutils literal notranslate"><span class="pre">Collection</span></code> of particles), or for all particles involved in a certain <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code>.</p>
 <p>If a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> has it’s own operators, they will take highest preference. Second preference goes to the operators of the <code class="docutils literal notranslate"><span class="pre">Collection</span></code>. If no operators are set to either of these, the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> operators will be used.</p>
 <p>All <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code>s have default operators if you do not wish to specify any. An example of this priority order is shown in the code snippet below.</p>
@@ -494,16 +496,16 @@ div.rendered_html tbody tr:hover {
 <span class="kn">from</span> <span class="nn">cify.si.pso.velocity_updates</span> <span class="kn">import</span> <span class="n">inertia_weight_vel_update</span><span class="p">,</span> <span class="n">constriction_coefficient_vel_update</span>
 
 <span class="n">ci</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'exponential'</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">&#39;exponential&#39;</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">swarms</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_swarms</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_particles</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)</span>
 
 <span class="c1"># Setting a custom velocity update with parameters for a single Particle.</span>
 <span class="n">swarms</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_update</span> <span class="o">=</span> <span class="n">inertia_weight_vel_update</span>
-<span class="n">swarms</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">}</span>
+<span class="n">swarms</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">}</span>
 
 <span class="c1"># Setting a custom velocity update with parameters for one of the swarms.</span>
 <span class="n">swarms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_update</span> <span class="o">=</span> <span class="n">constriction_coefficient_vel_update</span>
-<span class="n">swarms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'k'</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">}</span>
+<span class="n">swarms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -512,7 +514,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CIFY: internal seed successfully set to: '0'
+CIFY: internal seed successfully set to: &#39;0&#39;
 </pre></div></div>
 </div>
 <p>Once we have defined custom operators, we can define and execute an algorithm using these swarms.</p>
@@ -619,6 +621,7 @@ CIFY: internal seed successfully set to: '0'
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

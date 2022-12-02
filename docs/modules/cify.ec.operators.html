@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Swarm Intelligence" href="cify.si.html" /><link rel="prev" title="Genetic Algorithm" href="cify.ec.ga.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Evolutionary Operators - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -218,7 +220,7 @@
         </div>
         <article role="main">
           <section id="evolutionary-operators">
-<h1>Evolutionary Operators<a class="headerlink" href="#evolutionary-operators" title="Permalink to this headline">#</a></h1>
+<h1>Evolutionary Operators<a class="headerlink" href="#evolutionary-operators" title="Permalink to this heading">#</a></h1>
 <p>There are three types of evolutionary operators for the three stages of simulated evolution; crossover,
 mutation and selection. These operators take a variety of parameters that can be passed as a <code class="docutils literal notranslate"><span class="pre">dict</span></code>
 to your chosen evolutionary algorithm. For the differential evolution algorithm, take a look at its
@@ -234,91 +236,95 @@ not wish to tune them further. It is worth looking at the possible control param
 operators as tuning the control parameters can have a significant positive effect on the performance of your
 chosen evolutionary <code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code>.</p>
 <section id="module-cify.ec.operators.crossover">
-<span id="crossover"></span><h2>Crossover<a class="headerlink" href="#module-cify.ec.operators.crossover" title="Permalink to this headline">#</a></h2>
+<span id="crossover"></span><h2>Crossover<a class="headerlink" href="#module-cify.ec.operators.crossover" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.uniform_crossover">
-<span class="sig-name descname"><span class="pre">uniform_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.uniform_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">uniform_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.uniform_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Discrete uniform crossover. The elements in the same position are not blended in any way.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The parents whose chromosomes will be recombined.</p></li>
 <li><p><strong>n_offspring</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of offspring to generate during crossover, defaults to 2</p></li>
 <li><p><strong>crossover_probability</strong> (<em>float</em><em>, </em><em>optional</em>) – The probability of crossover for any position in the parents’ chromosomes, defaults to 0.5</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The generated offspring.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.npoint_crossover">
-<span class="sig-name descname"><span class="pre">npoint_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.npoint_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">npoint_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.npoint_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Discrete n-point crossover. The elements in the same position are not blended in any way.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The parents whose chromosomes will be recombined.</p></li>
 <li><p><strong>n_offspring</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of offspring to generate during crossover, defaults to 2</p></li>
 <li><p><strong>n_points</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of recombination points, defaults to 2</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The generated offspring.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.one_point_crossover">
-<span class="sig-name descname"><span class="pre">one_point_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.one_point_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">one_point_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.one_point_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Discrete one-point crossover. The elements in the same position are not blended in any way.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The parents whose chromosomes will be recombined.</p></li>
 <li><p><strong>n_offspring</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of offspring to generate during crossover, defaults to 2</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The generated offspring.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.two_point_crossover">
-<span class="sig-name descname"><span class="pre">two_point_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.two_point_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">two_point_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.two_point_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Discrete two-point crossover. The elements in the same position are not blended in any way.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The parents whose chromosomes will be recombined.</p></li>
 <li><p><strong>n_offspring</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of offspring to generate during crossover, defaults to 2</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The generated offspring.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.hillclimbing_crossover">
-<span class="sig-name descname"><span class="pre">hillclimbing_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.hillclimbing_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">hillclimbing_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_offspring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cify.ec.operators.crossover.hillclimbing_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Discrete hillclimbing crossover. The elements in the same position are not blended in any way.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The parents whose chromosomes will be recombined.</p></li>
 <li><p><strong>n_offspring</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of offspring to generate during crossover, defaults to 2</p></li>
@@ -330,79 +336,83 @@ chosen evolutionary <code class="xref py py-class docutils literal notranslate">
 <p>will be returned, defaults to 5
 :type max_attempts: int, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The generated offspring.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.linear_crossover">
 <span class="sig-name descname"><span class="pre">linear_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.crossover.linear_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Linear crossover for floating-point representations. This operator only accepts two parents.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>parents</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code> of length 2.) – The parents whose chromosomes will be recombined.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The generated offspring.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.binomial_crossover">
-<span class="sig-name descname"><span class="pre">binomial_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">cify.ec.individual.Individual</span></a></span></span><a class="headerlink" href="#cify.ec.operators.crossover.binomial_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">binomial_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">Individual</span></a></span></span><a class="headerlink" href="#cify.ec.operators.crossover.binomial_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs binomial crossover between two parents. In differential evolution, the parents would be a list
 or <cite>Collection</cite> of iterables representing the individual (<cite>parents[0]</cite>) and trial vector (<cite>parents[1]</cite>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (<em>any iterable</em><em>, </em><em>list</em><em> or </em><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><em>Collection</em></a>) – The two parents to perform crossover on.</p></li>
 <li><p><strong>crossover_probability</strong> (<em>float</em>) – The probability threshold for performing crossover.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A single individual that represents the combination of the two input parents.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.crossover.exponential_crossover">
-<span class="sig-name descname"><span class="pre">exponential_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">cify.ec.individual.Individual</span></a></span></span><a class="headerlink" href="#cify.ec.operators.crossover.exponential_crossover" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">exponential_crossover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_probability</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">Individual</span></a></span></span><a class="headerlink" href="#cify.ec.operators.crossover.exponential_crossover" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs exponential crossover between two parents. In differential evolution, the parents would be a list
 or <cite>Collection</cite> of iterables representing the individual (<cite>parents[0]</cite>) and trial vector (<cite>parents[1]</cite>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parents</strong> (<em>any iterable</em><em>, </em><em>list</em><em> or </em><a class="reference internal" href="cify.core.html#cify.core.base_classes.collection.Collection" title="cify.core.base_classes.collection.Collection"><em>Collection</em></a>) – The two parents to perform crossover on.</p></li>
 <li><p><strong>crossover_probability</strong> (<em>float</em>) – The probability threshold for performing crossover.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A single individual that represents the combination of the two input parents.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 <section id="module-cify.ec.operators.mutation">
-<span id="mutation"></span><h2>Mutation<a class="headerlink" href="#module-cify.ec.operators.mutation" title="Permalink to this headline">#</a></h2>
+<span id="mutation"></span><h2>Mutation<a class="headerlink" href="#module-cify.ec.operators.mutation" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.mutation.uniform_mutation">
-<span class="sig-name descname"><span class="pre">uniform_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">cify.ec.individual.Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.uniform_mutation" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">uniform_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.uniform_mutation" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs uniform mutation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>individual</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code>) – The individual to mutate.</p></li>
 <li><p><strong>mutation_probability</strong> – The probability of mutation at any point in the individual’s chromosome,</p></li>
@@ -419,20 +429,21 @@ random floating point value. Mutation will not result in the current value being
 pick a value different to the value at the current position in the individual’s chromosome.
 :type discrete_values: list, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The mutated individual.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.mutation.random_mutation">
-<span class="sig-name descname"><span class="pre">random_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">cify.ec.individual.Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.random_mutation" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">random_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.random_mutation" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs random uniform mutation. A wrapper for the uniform mutation operator.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>individual</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code>) – The individual to mutate.</p></li>
 <li><p><strong>mutation_probability</strong> – The probability of mutation at any point in the individual’s chromosome,</p></li>
@@ -449,20 +460,21 @@ random floating point value. Mutation will not result in the current value being
 pick a value different to the value at the current position in the individual’s chromosome.
 :type discrete_values: list, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The mutated individual.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.mutation.inorder_mutation">
-<span class="sig-name descname"><span class="pre">inorder_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">cify.ec.individual.Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.inorder_mutation" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">inorder_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cify.ec.html#cify.ec.individual.Individual" title="cify.ec.individual.Individual"><span class="pre">Individual</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.inorder_mutation" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs random inorder mutation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>individual</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code>) – The individual to mutate.</p></li>
 <li><p><strong>mutation_probability</strong> (<em>float</em><em>, </em><em>optional</em>) – The probability of mutation at any point in the individual’s chromosome, defaults to 0.5</p></li>
@@ -480,12 +492,13 @@ pick a value different to the value at the current position in the individual’
 :return: The mutated individual.
 :rtype: <code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.mutation.headless_chicken_mutation">
-<span class="sig-name descname"><span class="pre">headless_chicken_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual:</span> <span class="pre">cify.ec.individual.Individual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_operator=&lt;function</span> <span class="pre">uniform_crossover&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_params:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values:</span> <span class="pre">typing.Optional[list]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.headless_chicken_mutation" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">headless_chicken_mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual:</span> <span class="pre">~cify.ec.individual.Individual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_operator=&lt;function</span> <span class="pre">uniform_crossover&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_params:</span> <span class="pre">~typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discrete_values:</span> <span class="pre">~typing.Optional[list]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.mutation.headless_chicken_mutation" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs headless chicken mutation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>individual</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code>) – The individual to mutate.</p></li>
 <li><p><strong>crossover_operator</strong> (<em>function</em><em>, </em><em>optional</em>) – The crossover operator to use, defaults to <code class="docutils literal notranslate"><span class="pre">uniform_crossover</span></code>.</p></li>
@@ -498,62 +511,65 @@ pick a value different to the value at the current position in the individual’
 pick a value different to the value at the current position in the individual’s chromosome.
 :type discrete_values: list, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The mutated individual.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Individual</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 <section id="module-cify.ec.operators.selection">
-<span id="selection"></span><h2>Selection<a class="headerlink" href="#module-cify.ec.operators.selection" title="Permalink to this headline">#</a></h2>
+<span id="selection"></span><h2>Selection<a class="headerlink" href="#module-cify.ec.operators.selection" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.selection.elitism_selection">
 <span class="sig-name descname"><span class="pre">elitism_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.selection.elitism_selection" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs elitism selection on the given population.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>population</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The population to select from.</p></li>
 <li><p><strong>n_agents</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of agents to return, defaults to 1</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The selected individual(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.selection.random_selection">
 <span class="sig-name descname"><span class="pre">random_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.selection.random_selection" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs random selection on the given population.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>population</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The population to select from.</p></li>
 <li><p><strong>n_agents</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of agents to return, defaults to the length of the population.</p></li>
 <li><p><strong>replace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to sample with replacement or not, defaults to False. (does not replace selected individuals)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The selected individual(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.selection.tournament_selection">
 <span class="sig-name descname"><span class="pre">tournament_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.selection.tournament_selection" title="Permalink to this definition">#</a></dt>
 <dd><p>Performs tournament selection on the given population. This operator is recommended for good overall performance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>population</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The population to select from.</p></li>
 <li><p><strong>n_agents</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of agents to return, defaults to the length of the population.</p></li>
@@ -565,14 +581,15 @@ pick a value different to the value at the current position in the individual’
 <p>(does not replace selected individuals)
 :type replace: bool, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The selected individual(s).</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="cify.ec.operators.selection.proportional_selection">
 <span class="sig-name descname"><span class="pre">proportional_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cify.ec.operators.selection.proportional_selection" title="Permalink to this definition">#</a></dt>
@@ -580,24 +597,27 @@ pick a value different to the value at the current position in the individual’
 Proportional selection is similar to random selection, except that a probability distribution
 proportional to the fitness of each individual is used to determine the likelihood of sampling an individual.
 The formula used to determine this distribution is given below:</p>
-<div class="math-wrapper"><div class="math notranslate nohighlight">
-\[\varphi(\mathbf{x_i}(t)) = \frac{f_{\Upsilon}(\mathbf{x_it}(t))}{\sum_{I=1}^{n_s} f_{\Upsilon}(\mathbf{x_i}(t))}\]</div></div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\varphi(\mathbf{x_i}(t)) = \frac{f_{\Upsilon}(\mathbf{x_it}(t))}{\sum_{I=1}^{n_s} f_{\Upsilon}(\mathbf{x_i}(t))}\]</div>
+</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>population</strong> (list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>) – The population to select from.</p></li>
 <li><p><strong>n_agents</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of agents to return, defaults to the length of the population.</p></li>
 <li><p><strong>replace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to sample with replacement or not, defaults to False. (does not replace selected individuals)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The selected individual(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list, <code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 </section>
 
@@ -676,6 +696,7 @@ The formula used to determine this distribution is given below:</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

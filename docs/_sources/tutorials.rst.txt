@@ -16,3 +16,4 @@ they need.
    tutorials/evolutionary-operators
    tutorials/pso-operators
    tutorials/custom-components-reference
+   tutorials/contributing

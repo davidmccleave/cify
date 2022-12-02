@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Objective Functions" href="objective-functions.html" /><link rel="prev" title="Basics" href="basics.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Algorithms - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -474,7 +476,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Algorithms">
-<h1>Algorithms<a class="headerlink" href="#Algorithms" title="Permalink to this headline">#</a></h1>
+<h1>Algorithms<a class="headerlink" href="#Algorithms" title="Permalink to this heading">#</a></h1>
 <p>In this tutorial, we will explore the general philosophy behind algorithms provided in this framework and we will end with a look at implementing your own algorithms from scratch, whilst maintaining compatibility with the framework. CIFY provides algorithms for swarm intelligence and evolutionary computation and all algorithms return statistics in the form of a Pandas DataFrame. We’ll start by looking at particle swarm optimization (PSO), but first, we must import cify and set a seed for all
 stochastic operations.</p>
 <div class="nbinput docutils container">
@@ -494,11 +496,11 @@ stochastic operations.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CIFY: internal seed successfully set to: '0'
+CIFY: internal seed successfully set to: &#39;0&#39;
 </pre></div></div>
 </div>
 <section id="PSO">
-<h2>PSO<a class="headerlink" href="#PSO" title="Permalink to this headline">#</a></h2>
+<h2>PSO<a class="headerlink" href="#PSO" title="Permalink to this heading">#</a></h2>
 <p>Particle Swarm Optimization (PSO) algorithms use one or more swarms of particles to solve an objective function. The particles have position and velocity update operators that determine how to update their position and velocity at the end of each iteration. The velocity update operator, typically prefixed with <code class="docutils literal notranslate"><span class="pre">*_vel_update</span></code>, determines how the trajectory of a particle in search space is affected. Below are a few examples of optimizing the rosenbrock objective function using a couple PSO
 metaheuristics. First, we’ll import the algorithms and define an objective function.</p>
 <div class="nbinput nblast docutils container">
@@ -508,7 +510,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cify.si.pso.algorithm</span> <span class="kn">import</span> <span class="n">PSO</span><span class="p">,</span> <span class="n">InertiaWeightPSO</span>
 
 <span class="c1"># Define objective function.</span>
-<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'rosenbrock'</span><span class="p">,</span> <span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">&#39;rosenbrock&#39;</span><span class="p">,</span> <span class="n">ci</span><span class="o">.</span><span class="n">Optimization</span><span class="o">.</span><span class="n">Min</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -543,7 +545,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -556,75 +558,75 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>96</th>
-<td>111.703958</td>
-<td>10033.546738</td>
-<td>4648.041998</td>
-<td>2203.011241</td>
-<td>111.703958</td>
-<td>8503</td>
-</tr>
-<tr>
-<th>97</th>
-<td>111.703958</td>
-<td>11522.656332</td>
-<td>4395.894601</td>
-<td>2385.997594</td>
-<td>111.703958</td>
-<td>8503</td>
-</tr>
-<tr>
-<th>98</th>
-<td>111.703958</td>
-<td>9709.636204</td>
-<td>3988.904745</td>
-<td>2162.019298</td>
-<td>111.703958</td>
-<td>8503</td>
-</tr>
-<tr>
-<th>99</th>
-<td>111.703958</td>
-<td>9824.141424</td>
-<td>4235.712319</td>
-<td>2073.313266</td>
-<td>111.703958</td>
-<td>8503</td>
-</tr>
-<tr>
-<th>100</th>
-<td>111.703958</td>
-<td>11972.964051</td>
-<td>4318.737118</td>
-<td>2118.621926</td>
-<td>111.703958</td>
-<td>8503</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>111.703958</td>
+      <td>10033.546738</td>
+      <td>4648.041998</td>
+      <td>2203.011241</td>
+      <td>111.703958</td>
+      <td>8503</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>111.703958</td>
+      <td>11522.656332</td>
+      <td>4395.894601</td>
+      <td>2385.997594</td>
+      <td>111.703958</td>
+      <td>8503</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>111.703958</td>
+      <td>9709.636204</td>
+      <td>3988.904745</td>
+      <td>2162.019298</td>
+      <td>111.703958</td>
+      <td>8503</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>111.703958</td>
+      <td>9824.141424</td>
+      <td>4235.712319</td>
+      <td>2073.313266</td>
+      <td>111.703958</td>
+      <td>8503</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>111.703958</td>
+      <td>11972.964051</td>
+      <td>4318.737118</td>
+      <td>2118.621926</td>
+      <td>111.703958</td>
+      <td>8503</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>The performance of the standard PSO was ok, but not great. Let’s try using the <code class="docutils literal notranslate"><span class="pre">InertiaWeightPSO</span></code> algorithm instead. This algorithm uses a different velocity update operator that gives each particle inertia in its journey through the search space. We could also just use the <code class="docutils literal notranslate"><span class="pre">PSO</span></code> algorithm and make it use the <code class="docutils literal notranslate"><span class="pre">inertia_weight_vel_update</span></code> operator. Remember, PSO velocity update operators are stored in <code class="docutils literal notranslate"><span class="pre">cify.velocity_updates</span></code>.</p>
@@ -632,7 +634,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is just for demonstration purposes. We'll use inertia_pso to optimize the objective function.</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is just for demonstration purposes. We&#39;ll use inertia_pso to optimize the objective function.</span>
 <span class="n">using_standard_pso</span> <span class="o">=</span> <span class="n">PSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
                          <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">)],</span>
                          <span class="n">velocity_update</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">velocity_updates</span><span class="o">.</span><span class="n">inertia_weight_vel_update</span><span class="p">)</span>
@@ -659,7 +661,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -672,75 +674,75 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>96</th>
-<td>27.459453</td>
-<td>10946.777377</td>
-<td>4405.792193</td>
-<td>2542.205149</td>
-<td>26.964811</td>
-<td>5460</td>
-</tr>
-<tr>
-<th>97</th>
-<td>27.331610</td>
-<td>9606.118944</td>
-<td>4086.874835</td>
-<td>2223.051825</td>
-<td>26.964811</td>
-<td>5457</td>
-</tr>
-<tr>
-<th>98</th>
-<td>25.839312</td>
-<td>8501.609323</td>
-<td>3970.045161</td>
-<td>2058.048869</td>
-<td>25.839312</td>
-<td>5459</td>
-</tr>
-<tr>
-<th>99</th>
-<td>26.359693</td>
-<td>10492.288225</td>
-<td>3837.837926</td>
-<td>2340.602586</td>
-<td>25.839312</td>
-<td>5465</td>
-</tr>
-<tr>
-<th>100</th>
-<td>25.026685</td>
-<td>8766.201689</td>
-<td>4508.877989</td>
-<td>2016.702601</td>
-<td>25.026685</td>
-<td>5459</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>27.459453</td>
+      <td>10946.777377</td>
+      <td>4405.792193</td>
+      <td>2542.205149</td>
+      <td>26.964811</td>
+      <td>5460</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>27.331610</td>
+      <td>9606.118944</td>
+      <td>4086.874835</td>
+      <td>2223.051825</td>
+      <td>26.964811</td>
+      <td>5457</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>25.839312</td>
+      <td>8501.609323</td>
+      <td>3970.045161</td>
+      <td>2058.048869</td>
+      <td>25.839312</td>
+      <td>5459</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>26.359693</td>
+      <td>10492.288225</td>
+      <td>3837.837926</td>
+      <td>2340.602586</td>
+      <td>25.839312</td>
+      <td>5465</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>25.026685</td>
+      <td>8766.201689</td>
+      <td>4508.877989</td>
+      <td>2016.702601</td>
+      <td>25.026685</td>
+      <td>5459</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>That’s better, we’ve managed to gain a reasonable improvement over the standard PSO. Let’s try tuning the operators a little. We’ll also use 3 swarms with 75 particles each, and get them using the <code class="docutils literal notranslate"><span class="pre">get_swarms</span></code> utility method. To examine the performance of this approach, we’ll plot the <code class="docutils literal notranslate"><span class="pre">global_optimum</span></code> using matplotlib.</p>
@@ -752,13 +754,13 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 
 <span class="n">tuned_pso</span> <span class="o">=</span> <span class="n">InertiaWeightPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">,</span>
                              <span class="n">swarms</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarms</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="n">obj_func</span><span class="o">=</span><span class="n">obj_func</span><span class="p">),</span>
-                             <span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span> <span class="s1">'c1'</span><span class="p">:</span><span class="mf">1.12</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span><span class="mf">1.8</span><span class="p">},</span>
+                             <span class="n">velocity_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="mf">1.12</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="mf">1.8</span><span class="p">},</span>
                              <span class="p">)</span>
 
 <span class="n">tuned_pso</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tuned_pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tuned_pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;global_optimum&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Global Optimum&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -775,7 +777,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_algorithms_9_1.png" src="../_images/tutorials_algorithms_9_1.png"/>
+<img alt="../_images/tutorials_algorithms_9_1.png" src="../_images/tutorials_algorithms_9_1.png" />
 </div>
 </div>
 <p>With all those particles to simulate (3 x 75 = 225), that took a a bit longer to run. Luckily, we have some acceptable results as indicated in the graph above. But, if we look at the results of our final iteration, we have not improved at all over the previous approaches.</p>
@@ -793,7 +795,7 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -806,44 +808,44 @@ metaheuristics. First, we’ll import the algorithms and define an objective fun
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>100</th>
-<td>1050.879232</td>
-<td>11703.089433</td>
-<td>4297.516689</td>
-<td>1964.308719</td>
-<td>103.682729</td>
-<td>35776</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>1050.879232</td>
+      <td>11703.089433</td>
+      <td>4297.516689</td>
+      <td>1964.308719</td>
+      <td>103.682729</td>
+      <td>35776</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 </section>
 <section id="GA">
-<h2>GA<a class="headerlink" href="#GA" title="Permalink to this headline">#</a></h2>
+<h2>GA<a class="headerlink" href="#GA" title="Permalink to this heading">#</a></h2>
 <p>Genetic algorithms might be able to solve the Rosenbrock problem better than the previous PSO attempts. We’ll try just one approach for 100 iterations. Have a look through the API documentation for more genetic algorithm approaches, in particular, look through the evolutionary operators as adjusting these parameters will lead to the biggest improvements. We’ll use linear crossover to ensure our floating point input variables are blended. There are a range of other operators that perform blending
 in different ways. Some of the other operators, such as <code class="docutils literal notranslate"><span class="pre">uniform_crossover</span></code> or <code class="docutils literal notranslate"><span class="pre">npoint_crossover</span></code> are for discrete input variables. Once again, the API documentation is your friend.</p>
 <div class="nbinput docutils container">
@@ -876,7 +878,7 @@ in different ways. Some of the other operators, such as <code class="docutils li
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -889,44 +891,44 @@ in different ways. Some of the other operators, such as <code class="docutils li
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>100</th>
-<td>2.857258e+56</td>
-<td>5.692957e+59</td>
-<td>4.345335e+58</td>
-<td>7.712478e+58</td>
-<td>670.409038</td>
-<td>1351</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>2.857258e+56</td>
+      <td>5.692957e+59</td>
+      <td>4.345335e+58</td>
+      <td>7.712478e+58</td>
+      <td>670.409038</td>
+      <td>1351</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 </section>
 <section id="DE">
-<h2>DE<a class="headerlink" href="#DE" title="Permalink to this headline">#</a></h2>
+<h2>DE<a class="headerlink" href="#DE" title="Permalink to this heading">#</a></h2>
 <p>Differential evolution takes a different approach to finding optimal solutions. Let’s see how a DE algorithm compares to the previous approaches.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -955,7 +957,7 @@ in different ways. Some of the other operators, such as <code class="docutils li
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -968,75 +970,75 @@ in different ways. Some of the other operators, such as <code class="docutils li
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>96</th>
-<td>0.209123</td>
-<td>0.703089</td>
-<td>0.466061</td>
-<td>0.123154</td>
-<td>0.163842</td>
-<td>400</td>
-</tr>
-<tr>
-<th>97</th>
-<td>0.209123</td>
-<td>0.703089</td>
-<td>0.434530</td>
-<td>0.111184</td>
-<td>0.163842</td>
-<td>400</td>
-</tr>
-<tr>
-<th>98</th>
-<td>0.201311</td>
-<td>0.703089</td>
-<td>0.389530</td>
-<td>0.111078</td>
-<td>0.163842</td>
-<td>400</td>
-</tr>
-<tr>
-<th>99</th>
-<td>0.201311</td>
-<td>0.543802</td>
-<td>0.359623</td>
-<td>0.102018</td>
-<td>0.163842</td>
-<td>400</td>
-</tr>
-<tr>
-<th>100</th>
-<td>0.170072</td>
-<td>0.543802</td>
-<td>0.327667</td>
-<td>0.101395</td>
-<td>0.163842</td>
-<td>400</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>0.209123</td>
+      <td>0.703089</td>
+      <td>0.466061</td>
+      <td>0.123154</td>
+      <td>0.163842</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.209123</td>
+      <td>0.703089</td>
+      <td>0.434530</td>
+      <td>0.111184</td>
+      <td>0.163842</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.201311</td>
+      <td>0.703089</td>
+      <td>0.389530</td>
+      <td>0.111078</td>
+      <td>0.163842</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.201311</td>
+      <td>0.543802</td>
+      <td>0.359623</td>
+      <td>0.102018</td>
+      <td>0.163842</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>0.170072</td>
+      <td>0.543802</td>
+      <td>0.327667</td>
+      <td>0.101395</td>
+      <td>0.163842</td>
+      <td>400</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>Wow, so far that’s the best approach for this problem. Let’s see how the global optimum changed with each iteration.</p>
@@ -1044,9 +1046,9 @@ in different ways. Some of the other operators, such as <code class="docutils li
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">de</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">de</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;global_optimum&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Global Optimum&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1055,13 +1057,13 @@ in different ways. Some of the other operators, such as <code class="docutils li
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_algorithms_17_0.png" src="../_images/tutorials_algorithms_17_0.png"/>
+<img alt="../_images/tutorials_algorithms_17_0.png" src="../_images/tutorials_algorithms_17_0.png" />
 </div>
 </div>
 <p>As is the case with all the other metaheuristics, there are different operators that can be used to further tune the behavior of the DE algorithm. They are located in <code class="docutils literal notranslate"><span class="pre">cify.target_vectors</span></code> and <code class="docutils literal notranslate"><span class="pre">cify.trial_vectors</span></code> for different target vector selection approaches and trial vector creation approaches respectively.</p>
 </section>
 <section id="Custom-Algorithm">
-<h2>Custom Algorithm<a class="headerlink" href="#Custom-Algorithm" title="Permalink to this headline">#</a></h2>
+<h2>Custom Algorithm<a class="headerlink" href="#Custom-Algorithm" title="Permalink to this heading">#</a></h2>
 <p>It’s also possible to define custom algorithms / metaheuristics. All we need to do is create a class that uses <code class="docutils literal notranslate"><span class="pre">cify.Algorithm</span></code> as its base class and overrides the <code class="docutils literal notranslate"><span class="pre">do_iteration</span></code> method. If you wanted to use the components of a certain paradigm, it is better practice to use the generic algorithm from that paradigm as the base class instead.</p>
 <p>Our custom PSO implementation is going to use the <code class="docutils literal notranslate"><span class="pre">uniform_crossover</span></code> operator from the evolutionary computation package to perform discrete uniform crossover between random pairs of particles before doing the standard iteration routine. We’ll call it <code class="docutils literal notranslate"><span class="pre">EvoPSO</span></code> since it blends a little bit of evolutionary computation with particle swarm intelligence.</p>
 <div class="nbinput nblast docutils container">
@@ -1110,7 +1112,7 @@ in different ways. Some of the other operators, such as <code class="docutils li
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1123,75 +1125,75 @@ in different ways. Some of the other operators, such as <code class="docutils li
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>96</th>
-<td>1097.248168</td>
-<td>10895.017570</td>
-<td>4410.627303</td>
-<td>2363.715753</td>
-<td>203.536983</td>
-<td>5651</td>
-</tr>
-<tr>
-<th>97</th>
-<td>1299.336260</td>
-<td>10931.679346</td>
-<td>4316.117330</td>
-<td>2002.327570</td>
-<td>203.536983</td>
-<td>5651</td>
-</tr>
-<tr>
-<th>98</th>
-<td>1159.129642</td>
-<td>10725.914508</td>
-<td>4641.166852</td>
-<td>2241.082033</td>
-<td>203.536983</td>
-<td>5651</td>
-</tr>
-<tr>
-<th>99</th>
-<td>714.747290</td>
-<td>10936.796737</td>
-<td>4536.682885</td>
-<td>1926.061391</td>
-<td>203.536983</td>
-<td>5651</td>
-</tr>
-<tr>
-<th>100</th>
-<td>1353.783962</td>
-<td>13709.697023</td>
-<td>4731.920196</td>
-<td>2393.691847</td>
-<td>203.536983</td>
-<td>5651</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>1097.248168</td>
+      <td>10895.017570</td>
+      <td>4410.627303</td>
+      <td>2363.715753</td>
+      <td>203.536983</td>
+      <td>5651</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>1299.336260</td>
+      <td>10931.679346</td>
+      <td>4316.117330</td>
+      <td>2002.327570</td>
+      <td>203.536983</td>
+      <td>5651</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>1159.129642</td>
+      <td>10725.914508</td>
+      <td>4641.166852</td>
+      <td>2241.082033</td>
+      <td>203.536983</td>
+      <td>5651</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>714.747290</td>
+      <td>10936.796737</td>
+      <td>4536.682885</td>
+      <td>1926.061391</td>
+      <td>203.536983</td>
+      <td>5651</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>1353.783962</td>
+      <td>13709.697023</td>
+      <td>4731.920196</td>
+      <td>2393.691847</td>
+      <td>203.536983</td>
+      <td>5651</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>As we can see from the final five iterations, this approach was not a good one. The crossing over of input variables must be greatly sacrificing exploitation for exploration in the search process.</p>
@@ -1274,6 +1276,7 @@ in different ways. Some of the other operators, such as <code class="docutils li
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>

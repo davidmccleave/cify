@@ -1,14 +1,14 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Algorithms" href="algorithms.html" /><link rel="prev" title="Tutorials" href="../tutorials.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Basics - CIFY 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="evolutionary-operators.html">Evolutionary Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pso-operators.html">PSO Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom-components-reference.html">The Custom Components Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../benchmark-objective-functions.html">Benchmark Objective Functions</a></li>
@@ -203,7 +204,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -474,7 +476,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Basics">
-<h1>Basics<a class="headerlink" href="#Basics" title="Permalink to this headline">#</a></h1>
+<h1>Basics<a class="headerlink" href="#Basics" title="Permalink to this heading">#</a></h1>
 <p>This tutorial gives a brief introduction to the standard pipeline followed optimizing some objective function in CIFY. First, we’ll import CIFY and set a seed for stochastic operations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -491,11 +493,11 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CIFY: internal seed successfully set to: '0'
+CIFY: internal seed successfully set to: &#39;0&#39;
 </pre></div></div>
 </div>
 <section id="1.-Objective-Function">
-<h2>1. Objective Function<a class="headerlink" href="#1.-Objective-Function" title="Permalink to this headline">#</a></h2>
+<h2>1. Objective Function<a class="headerlink" href="#1.-Objective-Function" title="Permalink to this heading">#</a></h2>
 <p>Everything pipeline starts with defining an objective function. In CIFY, defining an objective function is taken care of by the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> class. We could also define a multi-/many- objective function using the <code class="docutils literal notranslate"><span class="pre">MultiObjectiveFunction</span></code> class. The <code class="docutils literal notranslate"><span class="pre">MultiObjectiveFunction</span></code> class essentially acts as a wrapper class for the <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code> class. Since this tutorial is only on the basics, we’ll optimize a single objective function. There are two approaches to defining an
 <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>.</p>
 <ol class="arabic simple">
@@ -521,7 +523,7 @@ CIFY: internal seed successfully set to: '0'
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Approach 1</span>
-<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">'sphere'</span><span class="p">)</span>
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">get_objective_function</span><span class="p">(</span><span class="s1">&#39;sphere&#39;</span><span class="p">)</span>
 
 <span class="c1"># Approach 2</span>
 <span class="k">def</span> <span class="nf">func_to_optimize</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
@@ -537,7 +539,7 @@ CIFY: internal seed successfully set to: '0'
 </div>
 </section>
 <section id="2.-The-Metaheuristic-/-Algorithm">
-<h2>2. The Metaheuristic / Algorithm<a class="headerlink" href="#2.-The-Metaheuristic-/-Algorithm" title="Permalink to this headline">#</a></h2>
+<h2>2. The Metaheuristic / Algorithm<a class="headerlink" href="#2.-The-Metaheuristic-/-Algorithm" title="Permalink to this heading">#</a></h2>
 <p>The second step is to define an algorithm, otherwise known as a metaheuristic, that will attempt to solve the previously defined <code class="docutils literal notranslate"><span class="pre">ObjectiveFunction</span></code>. For this tutorial, we will use a the <code class="docutils literal notranslate"><span class="pre">InertiaWeightPSO</span></code> class. This is a simple PSO algorithm that has an inertia component as well as cognitive and social components.</p>
 <p>Metaheuristics are stored in their respective packages and must be imported manually. There are currently two main packages that house metaheuristics:</p>
 <ol class="arabic simple">
@@ -597,7 +599,7 @@ examining the last five iterations.</p>
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -610,75 +612,75 @@ examining the last five iterations.</p>
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>46</th>
-<td>0.031225</td>
-<td>130.434857</td>
-<td>48.854003</td>
-<td>46.573580</td>
-<td>0.017161</td>
-<td>5508</td>
-</tr>
-<tr>
-<th>47</th>
-<td>0.018963</td>
-<td>156.629038</td>
-<td>49.556076</td>
-<td>48.557763</td>
-<td>0.017161</td>
-<td>5507</td>
-</tr>
-<tr>
-<th>48</th>
-<td>0.013211</td>
-<td>146.943548</td>
-<td>51.456730</td>
-<td>47.817443</td>
-<td>0.013211</td>
-<td>5501</td>
-</tr>
-<tr>
-<th>49</th>
-<td>0.016100</td>
-<td>138.992332</td>
-<td>53.550162</td>
-<td>51.682439</td>
-<td>0.013211</td>
-<td>5502</td>
-</tr>
-<tr>
-<th>50</th>
-<td>0.013181</td>
-<td>132.117548</td>
-<td>49.539194</td>
-<td>46.193534</td>
-<td>0.013181</td>
-<td>5509</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>46</th>
+      <td>0.031225</td>
+      <td>130.434857</td>
+      <td>48.854003</td>
+      <td>46.573580</td>
+      <td>0.017161</td>
+      <td>5508</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.018963</td>
+      <td>156.629038</td>
+      <td>49.556076</td>
+      <td>48.557763</td>
+      <td>0.017161</td>
+      <td>5507</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>0.013211</td>
+      <td>146.943548</td>
+      <td>51.456730</td>
+      <td>47.817443</td>
+      <td>0.013211</td>
+      <td>5501</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.016100</td>
+      <td>138.992332</td>
+      <td>53.550162</td>
+      <td>51.682439</td>
+      <td>0.013211</td>
+      <td>5502</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>0.013181</td>
+      <td>132.117548</td>
+      <td>49.539194</td>
+      <td>46.193534</td>
+      <td>0.013181</td>
+      <td>5509</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>As we can see, our algorithm achieved a decent solution, however, it was still far from converging. With some control parameter tuning (for example, tuning the velocity update acceleration coefficients) we should be able to improve upon those results. Let’s plot the global optimum per iteration and see how it changes over time. We’ll use matplotlib for to do this.</p>
@@ -688,9 +690,9 @@ examining the last five iterations.</p>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;global_optimum&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Global Optimum&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -699,7 +701,7 @@ examining the last five iterations.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_basics_11_0.png" src="../_images/tutorials_basics_11_0.png"/>
+<img alt="../_images/tutorials_basics_11_0.png" src="../_images/tutorials_basics_11_0.png" />
 </div>
 </div>
 <p>Let’s try changing some of the control parameters mentioned previously, and see what effect that has on the global optimum graph. To do this, we just need to pass a <code class="docutils literal notranslate"><span class="pre">dict</span></code> for the <code class="docutils literal notranslate"><span class="pre">velocity_params</span></code> parameter. This same philosophy applies to all metaheuristics and their constituent components. Just check the API reference documentation first to see what parameters you can pass.</p>
@@ -711,16 +713,16 @@ earlier convergence.</p>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define algorithm</span>
 <span class="n">pso2</span> <span class="o">=</span> <span class="n">InertiaWeightPSO</span><span class="p">(</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">swarms</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="o">.</span><span class="n">get_swarm</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">obj_func</span><span class="p">)],</span>
-                        <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">'w'</span><span class="p">:</span> <span class="mf">0.721</span><span class="p">,</span> <span class="s1">'c2'</span><span class="p">:</span> <span class="mf">1.8</span><span class="p">})</span>
+                        <span class="n">velocity_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mf">0.721</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span> <span class="mf">1.8</span><span class="p">})</span>
 
 <span class="c1"># Execute</span>
 <span class="n">pso2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 
 <span class="c1"># Examine results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso2</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'global_optimum'</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'PSO2 Results'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Global Optimum'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso2</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;global_optimum&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PSO2 Results&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Global Optimum&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -737,7 +739,7 @@ earlier convergence.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_basics_13_1.png" src="../_images/tutorials_basics_13_1.png"/>
+<img alt="../_images/tutorials_basics_13_1.png" src="../_images/tutorials_basics_13_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -754,7 +756,7 @@ earlier convergence.</p>
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
-<style scoped="">
+<style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -767,75 +769,75 @@ earlier convergence.</p>
         text-align: right;
     }
 </style>
-<div class="table-wrapper"><table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>best</th>
-<th>worst</th>
-<th>mean</th>
-<th>stdev</th>
-<th>global_optimum</th>
-<th>n_evaluations</th>
-</tr>
-<tr>
-<th>iteration</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>46</th>
-<td>0.846522</td>
-<td>150.136677</td>
-<td>81.434522</td>
-<td>36.488143</td>
-<td>0.812642</td>
-<td>5466</td>
-</tr>
-<tr>
-<th>47</th>
-<td>0.984588</td>
-<td>123.402108</td>
-<td>73.246908</td>
-<td>30.745832</td>
-<td>0.812642</td>
-<td>5465</td>
-</tr>
-<tr>
-<th>48</th>
-<td>0.827567</td>
-<td>128.608269</td>
-<td>79.231662</td>
-<td>30.937904</td>
-<td>0.812642</td>
-<td>5461</td>
-</tr>
-<tr>
-<th>49</th>
-<td>0.729024</td>
-<td>152.733371</td>
-<td>81.040461</td>
-<td>35.014592</td>
-<td>0.729024</td>
-<td>5465</td>
-</tr>
-<tr>
-<th>50</th>
-<td>0.809018</td>
-<td>132.640271</td>
-<td>74.800055</td>
-<td>33.109720</td>
-<td>0.729024</td>
-<td>5466</td>
-</tr>
-</tbody>
-</table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>best</th>
+      <th>worst</th>
+      <th>mean</th>
+      <th>stdev</th>
+      <th>global_optimum</th>
+      <th>n_evaluations</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>46</th>
+      <td>0.846522</td>
+      <td>150.136677</td>
+      <td>81.434522</td>
+      <td>36.488143</td>
+      <td>0.812642</td>
+      <td>5466</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.984588</td>
+      <td>123.402108</td>
+      <td>73.246908</td>
+      <td>30.745832</td>
+      <td>0.812642</td>
+      <td>5465</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>0.827567</td>
+      <td>128.608269</td>
+      <td>79.231662</td>
+      <td>30.937904</td>
+      <td>0.812642</td>
+      <td>5461</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.729024</td>
+      <td>152.733371</td>
+      <td>81.040461</td>
+      <td>35.014592</td>
+      <td>0.729024</td>
+      <td>5465</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>0.809018</td>
+      <td>132.640271</td>
+      <td>74.800055</td>
+      <td>33.109720</td>
+      <td>0.729024</td>
+      <td>5466</td>
+    </tr>
+  </tbody>
+</table>
 </div></div>
 </div>
 <p>We have successfully managed to reduce the standard deviation of the swarm which indicates an improvement in convergence (exploitative behaviour), however, we have sacrificed the global optimum. Let’s compare the convergence between both approaches by plotting how the standard deviation changes.</p>
@@ -843,11 +845,11 @@ earlier convergence.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'stdev'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'PSO'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso2</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">'stdev'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'PSO2'</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;stdev&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PSO&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pso2</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;stdev&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PSO2&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'STD'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;STD&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -856,12 +858,12 @@ earlier convergence.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_basics_16_0.png" src="../_images/tutorials_basics_16_0.png"/>
+<img alt="../_images/tutorials_basics_16_0.png" src="../_images/tutorials_basics_16_0.png" />
 </div>
 </div>
 </section>
 <section id="Conclusion">
-<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this headline">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this heading">#</a></h2>
 <p>There are so many possibilities with nature-inspired metaheuristics. In this tutorial, we acquired a benchmark objective function using <code class="docutils literal notranslate"><span class="pre">get_objective_function</span></code>, defined a couple metaheuristics to optimize this function, and compared their performance by examining the resulting <code class="docutils literal notranslate"><span class="pre">statistics</span></code> DataFrame. We only covered a fraction of what CIFY provides so take a look at some of the other tutorials, read through the API reference documentation, or just start experimenting in your favourite
 development environment.</p>
 </section>
@@ -942,6 +944,7 @@ development environment.</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
