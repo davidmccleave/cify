@@ -6,10 +6,10 @@
    :target: https://opensource.org/licenses/MIT
 
 .. |logo| image:: data/cify-main-logo-slogan.png
-  :target: https://computer-science.pages.cs.sun.ac.za/rw771/2022/22628274-AE3-src/
+  :target: https://davidmccleave.github.io/cify/
   :alt: CIFY
 
-.. _Documentation: https://computer-science.pages.cs.sun.ac.za/rw771/2022/22628274-AE3-src/
+.. _Documentation: https://davidmccleave.github.io/cify/
 
 |python| |license|
 

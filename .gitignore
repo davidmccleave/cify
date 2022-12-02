@@ -1,4 +1,6 @@
 .DS_Store
-.venv/
-cify.egg-info/
 todo.md
+.venv/
+
+cify.egg-info/
+**/.idea/
