@@ -26,6 +26,10 @@ CIFY: Computational Intelligence Framework for pYthon
 .. (ii) how to run the application, and 
 .. (iii) how to run experiments or tests.
 
+NOTE: We are currently rewriting CIFY to improve performance and solidify ideas that were
+rushed in the past. This new version can be found here `here (Kyle Erwin's fork) 
+<https://github.com/KyleErwin/cify/>`_.
+
 The official repository for the Python CI framework, formerly known as CIFY.
 This open-source framework provides easy access to static methods and classes that
 simplify the process of nature-inspired optimization in Python. For more information,
