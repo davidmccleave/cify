@@ -20,43 +20,53 @@ Documentation_ / Installation_ / Usage_ / Contributing_ / Contact_
 CIFY: Computational Intelligence Framework for pYthon
 =============================================================================
 
-.. TODO:
-.. Each code repository must contain a README file with instructions on 
-.. (i) how to start up the environment, including automatic resolution of any dependencies, 
-.. (ii) how to run the application, and 
-.. (iii) how to run experiments or tests.
+.. note::
+    We are currently rewriting CIFY to improve performance and solidify the implementations of ideas 
+    explored whilst writing this project. The new version can be found 
+    `here (Kyle Erwin's fork) <https://github.com/KyleErwin/cify/>`_. 
+    It is important to note that the new version is in its infancy and does not contain most of 
+    the functionality shown by this version. We believe rewriting the framework with more time and pairs
+    of eyes will result in a better foundation for more advanced concepts to be incorporated.
 
-NOTE: We are currently rewriting CIFY to improve performance and solidify ideas that were
-rushed in the past. This new version can be found here `here (Kyle Erwin's fork) 
-<https://github.com/KyleErwin/cify/>`_.
+CIFY is a framework for computational intelligence algorithms written in
+Python. The goal of the project is to create a framework that allows users to
+easily and reliably implement nature-inspired metaheuristics. The framework
+provides a set of very simple abstractions for implementing metaheuristics,
+objective functions, running experiments and collecting results.
 
-The official repository for the Python CI framework, formerly known as CIFY.
-This open-source framework provides easy access to static methods and classes that
-simplify the process of nature-inspired optimization in Python. For more information,
-consult the Documentation_.
+The guiding principles of the project are: 
 
-.. _Installation:
+- **Low barrier of entry**. Reading the tutorial or looking at the examples is
+  all you should need to start working with CIFY.
+- **Reproducibility**. Experiments with stochastic operations should be easily
+  reproducible.
+- **Speed**. Computational time should be kept to a minimum.
+- **Tests and documentation**. All code should be thoroughly tested and
+  documented.
 
-Installation
+Quickstart
 ********************************************************************************
 
-First, it is necessary to make sure you have a working Python 3 environment installed.
+.. warning::
+    When installing CIFY from pip you will be installing the fork found 
+    `here (Kyle Erwin's fork) <https://github.com/KyleErwin/cify/>`_. 
 
-To install the latest stable release via `pip`:
+```bash
+pip install cify
+```
 
-.. code-block:: bash
+or clone the repo and install CIFY to your environment using
 
-    pip install cify
-
-
-.. _Usage:
+```bash
+cd CIFY
+pip install -e .
+```
 
 Basic PSO Example
 ********************************************************************************
 
-Below is a simple example that first sets a global seed for all stochastic operations,
-then defines an objective function to optimize, optimizes this function using a PSO
-algorithm, and finally, outputs the results of the last five iterations.
+Use the following example to get started or refer to the documentation for more
+details.
 
 .. code-block:: python
 
