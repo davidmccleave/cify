@@ -98,9 +98,9 @@ dependencies first. The steps are outlined in a tutorial on the Documentation_ w
 Useful Information
 ~~~~~~~~~~~~~~~~~~
 
-``docs/`` contains the Sphinx website files.
+`docs/` contains the Sphinx website files.
 
-``cify/`` contains the CIFY source code.
+`cify/` contains the CIFY source code.
 
 To generate an interactive coverage report, first cd into the root directory, then run the commands
 below:
@@ -123,4 +123,4 @@ For any questions, contact me at my LinkedIn:
 | `David McCleave <https://www.linkedin.com/in/david-mccleave-326106243/>`_
 | Stellenbosch University
 
-Or find my contact details at: `davidmccleave.com <https://www.davidmccleave.com>`_
+Or find my contact details at: `davidmccleave.com <https://www.davidmccleave.com/>`_
