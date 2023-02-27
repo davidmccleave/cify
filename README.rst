@@ -15,10 +15,10 @@
 
 |logo|
 
-Documentation_ / Installation_ / Usage_ / Contributing_ / Contact_
+Documentation_ / Quickstart_ / Contributing_ / Contact_
 
 CIFY: Computational Intelligence Framework for pYthon
-=============================================================================
+======================================================
 
 .. note::
     We are currently rewriting CIFY to improve performance and solidify the implementations of ideas 
@@ -45,25 +45,25 @@ The guiding principles of the project are:
   documented.
 
 Quickstart
-********************************************************************************
+======================================================
 
 .. warning::
     When installing CIFY from pip you will be installing the fork found 
     `here (Kyle Erwin's fork) <https://github.com/KyleErwin/cify/>`_. 
 
-```bash
-pip install cify
-```
+.. code-block:: bash
+
+    pip install cify
 
 or clone the repo and install CIFY to your environment using
 
-```bash
-cd CIFY
-pip install -e .
-```
+.. code-block:: bash
+
+    cd CIFY
+    pip install -e .
 
 Basic PSO Example
-********************************************************************************
+--------------------------
 
 Use the following example to get started or refer to the documentation for more
 details.
@@ -90,7 +90,7 @@ details.
 .. _Contributing:
 
 Contributing
-********************************************************************************
+=============
 
 If you wish to contribute to CIFY, you'll need to clone the repository and install the necessary
 dependencies first. The steps are outlined in a tutorial on the Documentation_ website.
@@ -98,9 +98,9 @@ dependencies first. The steps are outlined in a tutorial on the Documentation_ w
 Useful Information
 ~~~~~~~~~~~~~~~~~~
 
-`docs/` contains the Sphinx website files.
+``docs/`` contains the Sphinx website files.
 
-`cify/` contains the CIFY source code.
+``cify/`` contains the CIFY source code.
 
 To generate an interactive coverage report, first cd into the root directory, then run the commands
 below:
@@ -116,9 +116,11 @@ HTML and open the web page in your default browser.
 .. _Contact:
 
 Contact
-********************************************************************************
+--------------------------
 
 For any questions, contact me at my LinkedIn:
 
 | `David McCleave <https://www.linkedin.com/in/david-mccleave-326106243/>`_
 | Stellenbosch University
+
+Or find my contact details at: `davidmccleave.com <https://www.davidmccleave.com>`_
