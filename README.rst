@@ -52,13 +52,16 @@ Quickstart
     `here (Kyle Erwin's fork) <https://github.com/KyleErwin/cify/>`_. 
 
 .. code-block:: bash
-    pip install cify
+
+	pip install cify
 
 or clone the repo and install CIFY to your environment using
 
 .. code-block:: bash
-    cd CIFY
-    pip install -e .
+
+	cd CIFY
+	pip install -e .
+
 
 Basic PSO Example
 ~~~~~~~~~~~~~~~~~~
@@ -105,7 +108,7 @@ below:
 
 .. code-block:: bash
 
-    coverage run -m pytest
+	coverage run -m pytest
     coverage html --omit="*/test*" --precision=2 && open htmlcov/index.html
 
 These commands will run pytest to generate the coverage report, then convert the generated SQL database into
